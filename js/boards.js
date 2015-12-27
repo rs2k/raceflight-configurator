@@ -2,6 +2,30 @@
 
 var BOARD_DEFINITIONS = [
     {
+        name: "VR Core F4",
+        identifier: "VRCR",
+        vcp: true
+    }, {
+        name: "REVO NANO F4",
+        identifier: "REVN",
+        vcp: true
+    }, {
+        name: "BlueJay F4",
+        identifier: "BJF4",
+        vcp: true
+    }, {
+        name: "REVO F4",
+        identifier: "REVO",
+        vcp: true
+    }, {
+        name: "SPARKY2 F4",
+        identifier: "SPK2",
+        vcp: true
+    }, {
+        name: "AlienFlight F4",
+        identifier: "AFF4",
+        vcp: true
+    }, {
         name: "CC3D",
         identifier: "CC3D",
         vcp: true

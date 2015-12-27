@@ -150,6 +150,16 @@ TABS.cli.read = function (readInfo) {
 
                     default:
                         text += String.fromCharCode(data[i]);
+						if(String.fromCharCode(data[i]) == '^') {
+							GUI.log('Rebooting!');
+							if (BOARD.find_board_definition(CONFIG.boardIdentifier).vcp) { // VCP-based flight controls may crash old drivers, we catch and reconnect
+								$('a.connect').click();
+								GUI.timeout_add('start_connection',function start_connection() {
+									$('a.connect').click();
+								},7500);
+							}
+						}
+
                 }
             }
         } else {
