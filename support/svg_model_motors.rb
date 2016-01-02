@@ -534,6 +534,19 @@ def render_wing
   m.close
 end
 
+def render_quadx_1234
+  m = Model.new  "quad_x_1234.svg"
+  m.draw_body 40,40,160,160
+  m.draw_body 40,160,160,40
+  m.end_body
+  m.draw_circle 160,160,"3",Model::CW,Model::SE
+  m.draw_circle 160,40,"2",Model::CCW,Model::NE
+  m.draw_circle 40,160,"4",Model::CCW,Model::SW
+  m.draw_circle 40,40,"1",Model::CW,Model::NW
+  m.draw_dirn
+  m.close
+end
+
 render_bi
 render_tri
 render_quadx
@@ -549,3 +562,4 @@ render_y6
 render_octox8
 render_aero
 render_wing
+render_quadx_1234
