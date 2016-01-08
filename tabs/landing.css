@@ -9,12 +9,12 @@
     min-height: 100%;
     height: 100%;
     overflow-y: auto;
-    background-color: #436c2c;
+    background-color: #B31B16;
 }
 
 .tab-landing .content_top {
     height: 140px;
-    background: #59aa29;
+    background: #b31b16;
     padding: 20px;
 }
 
@@ -172,7 +172,7 @@
 #changelog .wrapper {
     height: 100%;
     padding: 0 20px;
-    border-left: 5px solid green;
+    border-left: 5px solid #e81b1a;
     overflow-y: auto;
     display: none;
 }
@@ -182,7 +182,7 @@
     top: 50px;
     right: 215px;
     position: absolute;
-    background: green;
+    background: #e81b1a;
     border-radius: 5px 5px 0 0;
     border-bottom: none;
     height: 30px;

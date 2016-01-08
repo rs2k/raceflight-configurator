@@ -218,7 +218,7 @@
     },
 
     "defaultWelcomeIntro": {
-        "message": "Welcome to <strong>Cleanflight - Configurator</strong>, a utility designed to simplify updating, configuring and tuning of your flight controller."
+        "message": "Welcome to <strong>Raceflight - Configurator</strong>, a utility designed to simplify updating, configuring and tuning of your flight controller."
     },
     
     "defaultWelcomeText": {

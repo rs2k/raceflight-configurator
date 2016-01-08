@@ -3,9 +3,9 @@
     "minimum_chrome_version": "38",
     "version": "1.1.0",
     "author": "Hydra",
-    "name": "Cleanflight - Configurator (For Raceflight)",
-    "short_name": "cleanflight (For Raceflight)",
-    "description": "Crossplatform configuration tool for Cleanflight flight control system (For Raceflight)",
+    "name": "RaceFlight - Configurator",
+    "short_name": "raceflight",
+    "description": "Crossplatform configuration tool for RaceFlight flight control system",
 
     "offline_enabled": true,
 
