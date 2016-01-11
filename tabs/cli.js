@@ -154,9 +154,16 @@ TABS.cli.read = function (readInfo) {
 							GUI.log('Rebooting!');
 							if (BOARD.find_board_definition(CONFIG.boardIdentifier).vcp) { // VCP-based flight controls may crash old drivers, we catch and reconnect
 								$('a.connect').click();
-								GUI.timeout_add('start_connection',function start_connection() {
-									$('a.connect').click();
-								},7500);
+
+                                var conn_timeout = 7500;
+                                chrome.storage.local.get('connection_timeout', function(result){
+                                    conn_timeout = result.connection_timeout;
+
+                                    GUI.timeout_add('start_connection',function start_connection() {
+                                        $('a.connect').click();
+                                    }, conn_timeout);
+                                });
+								
 							}
 						}
 
@@ -199,11 +206,16 @@ TABS.cli.cleanup = function (callback) {
         // (another approach is however much more complicated):
         // we can setup an interval asking for data lets say every 200ms, when data arrives, callback will be triggered and tab switched
         // we could probably implement this someday
-        GUI.timeout_add('waiting_for_bootup', function waiting_for_bootup() {
-            CONFIGURATOR.cliActive = false;
-            CONFIGURATOR.cliValid = false;
+        var conn_timeout = 5000;
+        chrome.storage.local.get('connection_timeout', function(result){
+            conn_timeout = result.connection_timeout;
 
-            if (callback) callback();
-        }, 5000); // if we dont allow enough time to reboot, CRC of "first" command sent will fail, keep an eye for this one
+            GUI.timeout_add('waiting_for_bootup', function waiting_for_bootup() {
+                CONFIGURATOR.cliActive = false;
+                CONFIGURATOR.cliValid = false;
+
+                if (callback) callback();
+            }, conn_timeout); // if we dont allow enough time to reboot, CRC of "first" command sent will fail, keep an eye for this one
+        });
     });
 };

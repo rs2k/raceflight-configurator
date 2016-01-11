@@ -212,6 +212,22 @@ $(document).ready(function () {
                     googleAnalyticsConfig.setTrackingPermitted(check);
                 });
 
+                // connection timeout setting, if it wasn't set, set the default value
+                chrome.storage.local.get('connection_timeout', function (result) {
+                    if (typeof result.connection_timeout === 'undefined') {
+                        $('div.connect-timeout input').val(15000);
+                    }else{
+                        $('div.connect-timeout input').val(result.connection_timeout);
+                    }
+                });
+
+                $('div.connect-timeout input').change(function () {
+                    var value= $(this).val();
+                    googleAnalytics.sendEvent('Settings', 'Connection-Timeout', value);
+
+                    chrome.storage.local.set({'connection_timeout': value});
+                });
+
                 function close_and_cleanup(e) {
                     if (e.type == 'click' && !$.contains($('div#options-window')[0], e.target) || e.type == 'keyup' && e.keyCode == 27) {
                         $(document).unbind('click keyup', close_and_cleanup);

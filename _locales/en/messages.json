@@ -12,6 +12,9 @@
     "options_improve_configurator": {
         "message": "Send anonymous usage data to the developer team"
     },
+    "options_connect_timeout": {
+        "message": "Connection timeout"
+    },
 
     "connect": {
         "message": "Connect"

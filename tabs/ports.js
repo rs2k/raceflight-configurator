@@ -254,14 +254,23 @@ TABS.ports.initialize = function (callback, scrollPosition) {
             });
 
         }
+
+
         function on_reboot_success_handler() {
             GUI.log(chrome.i18n.getMessage('deviceRebooting'));
 
             if (BOARD.find_board_definition(CONFIG.boardIdentifier).vcp) { // VCP-based flight controls may crash old drivers, we catch and reconnect
                 $('a.connect').click();
-                GUI.timeout_add('start_connection',function start_connection() {
+
+                var conn_timeout = 7500;
+                chrome.storage.local.get('connection_timeout', function(result){
+                    conn_timeout = result.connection_timeout;
+
+                    GUI.timeout_add('start_connection',function start_connection() {
                     $('a.connect').click();
-                },7500);
+                }, conn_timeout);
+                });
+
             } else {
                 GUI.timeout_add('waiting_for_bootup', function waiting_for_bootup() {
                     MSP.send_message(MSP_codes.MSP_IDENT, false, false, function () {

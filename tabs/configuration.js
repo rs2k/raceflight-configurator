@@ -468,9 +468,16 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
 
                 if (BOARD.find_board_definition(CONFIG.boardIdentifier).vcp) { // VCP-based flight controls may crash old drivers, we catch and reconnect
                     $('a.connect').click();
-                    GUI.timeout_add('start_connection',function start_connection() {
-                        $('a.connect').click();
-                    },2000);
+
+                    var conn_timeout = 7500;
+                    chrome.storage.local.get('connection_timeout', function(result){
+                        conn_timeout = result.connection_timeout;
+
+                        GUI.timeout_add('start_connection',function start_connection() {
+                            $('a.connect').click();
+                        }, conn_timeout);
+                    });
+
                 } else {
 
                     GUI.timeout_add('waiting_for_bootup', function waiting_for_bootup() {
