@@ -53,7 +53,7 @@ a.disabled {
 
 .helpicon:hover {
     opacity: 0.9;
-    background-image: url(images/icons/cf_icon_info_green.svg);
+    background-image: url(images/icons/rf_icon_info_red.svg);
     transition: none;  
 }
 
@@ -77,6 +77,10 @@ a.disabled {
 .cf_doc_version_bt a:hover {
     background-color: #db221a;
     transition: all ease 0.2s;
+}
+
+.cf_doc_version_bt {
+display: none;
 }
 
 /* documentation button end  */
