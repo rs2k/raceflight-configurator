@@ -2,7 +2,7 @@
 
 // Google Analytics
 var googleAnalyticsService = analytics.getService('ice_cream_app');
-var googleAnalytics = googleAnalyticsService.getTracker(atob("VUEtNzE2OTE5ODYtMg=="));
+var googleAnalytics = googleAnalyticsService.getTracker(atob("VUEtNzE2OTE5ODYtMQ=="));
 var googleAnalyticsConfig = false;
 googleAnalyticsService.getConfig().addCallback(function (config) {
     googleAnalyticsConfig = config;
