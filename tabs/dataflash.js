@@ -10,7 +10,7 @@ TABS.dataflash.initialize = function (callback) {
 
     if (GUI.active_tab != 'dataflash') {
         GUI.active_tab = 'dataflash';
-        googleAnalytics.sendAppView('dataflash');
+        googleAnalytics.sendAppView('Dataflash');
     }
 
     var 
