@@ -36,7 +36,19 @@ TABS.landing.initialize = function (callback) {
             $(this).text(state ? 'Close' : 'Changelog');
             $(this).data('state2', state);
         });
-
+        /** credits trigger **/
+        $("#credits_toggle").on('click', function() {
+            var state_credits = $(this).data('state2_credits');
+            if (state_credits) {
+                $("#morecredits").hide();
+                state_credits = false;
+            } else {
+                $("#morecredits").show();
+                state_credits = true;
+            }
+            $(this).text(state_credits ? 'Show less' : 'Show more');
+            $(this).data('state2_credits', state_credits);
+        });
         GUI.content_ready(callback);
     });
 

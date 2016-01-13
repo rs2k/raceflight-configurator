@@ -151,15 +151,26 @@
     margin-right: 25px;
     margin-left: 20px;
     margin-top: 5px;
-    min-height: 187px;
+    min-height: 50px;
     font-size: 11px;
 }
 
-.tab-landing .content_mid .text3 .donate {
+.tab-landing .content_mid .text3 .credits {
     margin-top: 10px;
     text-align: center;
 }
 
+/* more credits block */
+#credits, #morecredits  {
+	margin-bottom: 12pt;
+}
+
+#morecredits {
+	display:none;
+}
+#credits_toggle {
+	color: #B31B16;
+}
 /* changelog block */
 #changelog {
     width: 250px;
