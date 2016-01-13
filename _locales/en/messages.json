@@ -218,17 +218,17 @@
     },
 
     "defaultWelcomeIntro": {
-        "message": "Welcome to <strong>Raceflight - Configurator</strong>, a utility designed to simplify updating, configuring and tuning of your flight controller."
+        "message": "Welcome to <strong>RaceFlight - Configurator</strong>, a utility designed to simplify updating, configuring and tuning of your flight controller."
     },
     
     "defaultWelcomeText": {
-        "message": "The application supports all hardware that can run raceflight (Revolution, Revo Nano, Sparky 2.0, AlienFlightF4, VRCore, BlueJayF4, Blackbox etc)<br /><br />The firmware source code can be downloaded from <a href=\"https://github.com/rs2k/raceflight\" title=\"www.github.com\" target=\"_blank\">here</a><br />The newest binary firmware image and development builds are available <a href=\"http://www.rcgroups.com/forums/showthread.php?t=2533601\" title=\"www.rcgroups.com\" target=\"_blank\">here</a><br />"
+        "message": "The application supports all hardware that can run RaceFlight (Revolution, Revo Nano, Sparky 2.0, AlienFlightF4, VRCore, BlueJayF4, Blackbox etc)<br /><br />The firmware source code can be downloaded from <a href=\"https://github.com/rs2k/raceflight\" title=\"www.github.com\" target=\"_blank\">here</a><br />The newest binary firmware image and development builds are available <a href=\"http://www.rcgroups.com/forums/showthread.php?t=2533601\" title=\"www.rcgroups.com\" target=\"_blank\">here</a><br />"
     },
     "defaultContributingHead": {
         "message": "Contributing"
     },
     "defaultContributingText": {
-        "message": "If you would like to help make Raceflight even better you can help in many ways, including:<br /><ul><li>Answering other users questions on the forums.</li><li>Contributing code to the firmware and configurator - new features, fixes, improvements</li><li>Testing <a href=\"https://github.com/rs2k/raceflight/pulls\" target=\"_blank\">new features/fixes</a> and providing feedback.</li><li>Helping out with <a href=\"https://github.com/rs2k/raceflight/issues\" target=\"_blank\">issues and commenting on feature requests</a></li></ul>"
+        "message": "If you would like to help make RaceFlight even better you can help in many ways, including:<br /><ul><li>Answering other users questions on the forums.</li><li>Contributing code to the firmware and configurator - new features, fixes, improvements</li><li>Testing <a href=\"https://github.com/rs2k/raceflight/pulls\" target=\"_blank\">new features/fixes</a> and providing feedback.</li><li>Helping out with <a href=\"https://github.com/rs2k/raceflight/issues\" target=\"_blank\">issues and commenting on feature requests</a></li></ul>"
     },
     "defaultChangelogHead": {
         "message": "Configurator - Changelog"
@@ -237,29 +237,31 @@
         "message": "Firmware Flasher"
     },
 	    "defaultRFCreditsHead": {
-        "message": "Thanks to the Raceflight team!"
+        "message": "Thanks to the RaceFlight team!"
     },
     "defaultRFCreditsText": {
-        "message": "For the countless hours spent on coding and testing <b>Raceflight</b>:<br />
-		blckmn,	braindrain, cmturn0, ehitaja, failsafe, ksal, MJ666, ntthhtl, rs2k, stormin13, tommyleo."
+        "message": "For the countless hours spent on coding and testing <strong>RaceFlight</strong>:<br />
+		blckmn,	braindrain, cmturn0, ehitaja, failsafe, ksal, MJ666, ntthhtl, phoboss, rs2k, stormin13, tommyleo."
     },
     "defaultCreditsHead": {
         "message": "Open Source Notice"
     },
     "defaultCreditsText": {
-        "message": "This utility is fully <strong>open source</strong> and is available free of charge to all <strong>raceflight</strong> users.<br /><br />	
-	<b>Raceflight</b> is forked from <b>Betaflight</b>, so special thanks to all who have contributed to <b>Betaflight</b> and <b>Cleanflight</b>.<br />
-	Especially <b>BorisB</b> (for Betaflight) and <b>Dominic Clifton</b> (for Cleanflight).
+        "message": "This utility is fully <strong>open source</strong> and is available free of charge to all <strong>RaceFlight</strong> users.<br /><br />	
+	<strong>RaceFlight</strong> is forked from <strong>Betaflight</strong>, so special thanks to all who have contributed to <strong>Betaflight</strong> and <strong>Cleanflight</strong>.<br />
 	"
     },
    "defaultMoreCreditsText": {
-        "message": "Also big thanks for following people:<br />
-	<b>Sambas</b> (for the Cleanflight STM32F4 port),<br />
-	<b>OpenPilot team</b> (For the Revo and Revo Nano),<br />
-	<b>Phoboss</b> for the Sparky2 and MPU 9250 work for this port,<br />
-	<b>James Peabody</b> and <b>Taulabs team</b> (For Sparky 2)<br />
+        "message": "<h3>Also big thanks for following people:</h3>
+	<strong>Alexinparis</strong> (for MultiWii),<br />
+	<strong>David Ankers</strong> and <strong>OpenPilot team</strong> (for the Revo and Revo Nano),<br />
+	<strong>timecop</strong> (for Baseflight),<br />
+	<strong>Dominic Clifton</strong> (for Cleanflight),<br />
+	<strong>Boris</strong> (for Betaflight),<br />
+	<strong>James Peabody</strong> and <strong>Taulabs team</strong> (for Sparky2),<br />
+	<strong>Sambas</strong> (for the Cleanflight STM32F4 port)<br />
 <br />
-<b>Raceflight Configurator</b> is forked from <b>Cleanflight Configurator</b>. Big thanks to <b>Dominic Clifton</b> and <b>ctn</b> for the original <b>Baseflight Configurator</b>.
+<strong>RaceFlight Configurator</strong> is forked from <strong>Cleanflight Configurator</strong>. Big thanks to <strong>Dominic Clifton</strong> and <strong>ctn</strong> for the original <strong>Baseflight Configurator</strong>.
 "
     },
     "defaultSponsorsHead": {
