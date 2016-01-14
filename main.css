@@ -1267,8 +1267,8 @@ dialog {
 }
 
 .connect_b a.connect {
-    background-color: #56ac1d;
-    border: 1px solid #5bbb1b;
+    background-color: #242424;
+    border: 2px solid #b31b16;
     background-image: url(images/icons/cf_icon_usb2_white.svg);
     background-repeat: no-repeat;
     background-size: 44px;
@@ -1277,18 +1277,18 @@ dialog {
 }
 
 .connect_b a.connect:hover {
-    background-color: #68c02e;
+    background-color: #DB221A;
 }
 
 .connect_b a.connect.active {
-    background-color: #e60000;
-    border: 1px solid #fe0000;
+    background-color: #b31b16;
+    border: 2px solid #A61914;
     background-image: url(images/icons/cf_icon_usb1_white.svg);
     transition: none;
 }
 
 .connect_b a.connect.active:hover {
-    background-color: #f21212;
+    background-color: #DB221A;
 }
 
 .connect_state {
