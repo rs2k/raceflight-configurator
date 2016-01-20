@@ -7,6 +7,8 @@ TABS.setup = {
 TABS.setup.initialize = function (callback) {
     var self = this;
 
+
+	
     if (GUI.active_tab != 'setup') {
         GUI.active_tab = 'setup';
         googleAnalytics.sendAppView('Setup');
@@ -54,7 +56,27 @@ TABS.setup.initialize = function (callback) {
         // set heading in interactive block
         $('span.heading').text(chrome.i18n.getMessage('initialSetupAttitude', [0]));
 
-
+		
+		var board_name = BOARD.find_board_definition(CONFIG.boardIdentifier).name;
+		var board_image = {};
+		
+		// update board name
+		console.log('Using board definition', board_name);
+		$('#boardname').text(board_name);
+		
+		// load board graphics
+		switch (board_name) {
+		  case 'REVO F4':
+			board_image = 'images/boards/revo.png';
+			break;
+		  case 'REVO NANO F4':
+			board_image = 'images/boards/nano.png';
+			break;			
+		  default:
+		  	board_image = 'images/boards/uknown.png';
+		}
+		$('#board img').attr('src', board_image);
+		
         // check if we have magnetometer
         if (!bit_check(CONFIG.activeSensors, 2)) {
             $('a.calibrateMag').addClass('disabled');

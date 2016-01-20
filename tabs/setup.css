@@ -40,6 +40,14 @@
     float: left;
 }
 
+#boardname {
+	display: block;
+    float: left;
+    font-size: large;
+    text-align: center;
+    width: 100%;
+}
+
 #interactive_block a.reset {
     position: absolute;
     display: block;
