@@ -120,12 +120,15 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             {bit: 16, group: 'other', name: 'LED_STRIP', description: 'Addressable RGB LED strip support'},
             {bit: 17, group: 'other', name: 'DISPLAY', description: 'OLED Screen Display'},
             {bit: 18, group: 'esc', name: 'ONESHOT125', description: 'ONESHOT ESC support (disconnect ESCs, remove props)'},
-            {bit: 19, group: 'other', name: 'BLACKBOX', description: 'Blackbox flight data recorder'}
-        ];
+            {bit: 19, group: 'other', name: 'BLACKBOX', description: 'Blackbox flight data recorder'},
+            {bit: 20, group: 'raceflight', name: 'ONESHOT125_PWM_RATE', description: 'ONESHOT (no sync?)'},			
+            {bit: 21, group: 'raceflight', name: 'MULTISHOT', description: 'MULTISHOT ESC support'},			
+            {bit: 22, group: 'raceflight', name: 'MULTISHOT_PWM_RATE', description: 'MULTISHOT ESC support (no sync?)'},			
+		];
         
         if (semver.gte(CONFIG.apiVersion, "1.12.0")) {
             features.push(
-                {bit: 20, group: 'other', name: 'CHANNEL_FORWARDING', description: 'Forward aux channels to servo outputs'}
+                {bit: 23, group: 'other', name: 'CHANNEL_FORWARDING', description: 'Forward aux channels to servo outputs'}
             );
         }
 
@@ -193,6 +196,51 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             });
         }
 
+        // generate RF_LOOP_CTRL
+        var boardIdentifier = BOARD.find_board_definition(CONFIG.boardIdentifier).identifier;
+		console.log('Using board definition', boardIdentifier);
+
+		switch(boardIdentifier) {
+			case 'REVO':	// Revolution
+				var rfLoopctrl = [
+					'M1',
+					'H1',
+					'M2',
+					'H2',
+					'M4',
+					'H4',
+					'M8',
+					'H8'
+				];
+				break;
+			case 'REVN':	// Revolution Nano
+				var rfLoopctrl = [
+/* disable stuff just for a test
+					'M1',
+					'H1',
+*/
+					'M2',
+					'H2',
+					'M4',
+					'H4',
+					'M8',
+					'H8'
+				];
+				break;
+			default:
+				var rfLoopctrl = [
+				'M1',
+				'M1',
+				'M2',
+				'M2',
+				'M4',
+				'H4',
+				'M8',
+				'H8'
+			];
+		}	
+
+
         // generate GPS
         var gpsProtocols = [
             'NMEA',
@@ -216,6 +264,13 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             'Indian GAGAN'
         ];
 
+        var rf_loop_ctrl_e = $('select.rf_loop_ctrl');
+        for (var i = 0; i < rfLoopctrl.length; i++) {
+            rf_loop_ctrl_e.append('<option value="' + i + '">' + rfLoopctrl[i] + '</option>');
+        }		
+		// Add board identifien to list for debug
+		rf_loop_ctrl_e.append('<option value="' + i + '">' + boardIdentifier + '</option>');		
+			
         var gps_protocol_e = $('select.gps_protocol');
         for (var i = 0; i < gpsProtocols.length; i++) {
             gps_protocol_e.append('<option value="' + i + '">' + gpsProtocols[i] + '</option>');
