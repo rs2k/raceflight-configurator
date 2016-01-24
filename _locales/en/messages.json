@@ -662,6 +662,9 @@
     "pidTuningTPABreakPoint": {
         "message": "TPA Breakpoint"
     },
+    "pidTuningAcroPlus": {
+        "message": "Acro+ factor"
+    },
     "pidTuningButtonSave": {
         "message": "Save"
     },
