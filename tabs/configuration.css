@@ -109,6 +109,22 @@
     margin-left: 0px;
 }
 
+.tab-configuration .raceflight .line {
+    clear: left;
+}
+
+.tab-configuration .raceflight select {
+    float: left;
+    width: 100px;
+    height: 20px;
+    margin: 0 10px 5px 0;
+    border: 1px solid silver;
+}
+
+.tab-configuration .raceflight span {
+    line-height: 20px;
+}
+
 .tab-configuration .gps .line {
     clear: left;
 }
@@ -254,6 +270,11 @@
     float: left;
 }
 
+.tab-configuration .mixer .gui_box, .tab-configuration .raceflight .gui_box {
+    min-height: 290px;
+    float: left;
+}
+
 .tab-configuration .board .gui_box, .tab-configuration .acc .gui_box {
     min-height: 137px;
     float: left;
@@ -347,6 +368,10 @@
         float: left;
     }
     .tab-configuration .mixer .gui_box, .tab-configuration .motorstop .gui_box {
+        min-height: 290px;
+        float: left;
+    }
+	 .tab-configuration .mixer .gui_box, .tab-configuration .raceflight .gui_box {
         min-height: 290px;
         float: left;
     }

@@ -456,6 +456,12 @@
     "configurationEscFeatures": {
         "message": "ESC/Motor Features"
     },
+    "configurationRFFeatures": {
+        "message": "RaceFlight Features"
+    },
+    "configurationRFLoopControl": {
+        "message": "RC_LOOP_CTRL"
+    },	
     "configurationFeaturesHelp": {
         "message": "<strong>Note:</strong> Not all combinations of features are valid.  When the flight controller firmware detects invalid feature combinations conflicting features will be disabled.<br /><strong>Note:</strong> Configure serial ports <span style=\"color: red\">before</span> enabling the features that will use the ports."
     },
