@@ -121,7 +121,7 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             {bit: 17, group: 'other', name: 'DISPLAY', description: 'OLED Screen Display'},
             {bit: 18, group: 'esc', name: 'ONESHOT125', description: 'ONESHOT ESC support (disconnect ESCs, remove props)'},
             {bit: 19, group: 'other', name: 'BLACKBOX', description: 'Blackbox flight data recorder'},
-            {bit: 20, group: 'raceflight', name: 'ONESHOT125_PWM_RATE', description: 'ONESHOT (no sync?)'},			
+            {bit: 20, group: 'raceflight', name: 'ONESHOT_PWM_RATE', description: 'ONESHOT (no sync?)'},			
             {bit: 21, group: 'raceflight', name: 'MULTISHOT', description: 'MULTISHOT ESC support'},			
             {bit: 22, group: 'raceflight', name: 'MULTISHOT_PWM_RATE', description: 'MULTISHOT ESC support (no sync?)'},			
 		];
