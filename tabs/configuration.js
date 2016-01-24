@@ -121,14 +121,16 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             {bit: 17, group: 'other', name: 'DISPLAY', description: 'OLED Screen Display'},
             {bit: 18, group: 'esc', name: 'ONESHOT125', description: 'ONESHOT ESC support (disconnect ESCs, remove props)'},
             {bit: 19, group: 'other', name: 'BLACKBOX', description: 'Blackbox flight data recorder'},
-            {bit: 20, group: 'raceflight', name: 'ONESHOT_PWM_RATE', description: 'ONESHOT (no sync?)'},			
             {bit: 21, group: 'raceflight', name: 'MULTISHOT', description: 'MULTISHOT ESC support'},			
-            {bit: 22, group: 'raceflight', name: 'MULTISHOT_PWM_RATE', description: 'MULTISHOT ESC support (no sync?)'},			
+            {bit: 22, group: 'raceflight', name: 'ONESHOT_PWM_RATE', description: 'ONESHOT (no sync?)'},			
+            {bit: 23, group: 'raceflight', name: 'MULTISHOT_PWM_RATE', description: 'MULTISHOT ESC support (no sync?)'},
+            {bit: 24, group: 'raceflight', name: 'TX_STYLE_EXPO', description: 'TX Style expo'},
+            {bit: 25, group: 'raceflight', name: 'SBUS_INVERTER', description: 'Control SBus hardware inverter'}			
 		];
         
         if (semver.gte(CONFIG.apiVersion, "1.12.0")) {
             features.push(
-                {bit: 23, group: 'other', name: 'CHANNEL_FORWARDING', description: 'Forward aux channels to servo outputs'}
+                {bit: 20, group: 'other', name: 'CHANNEL_FORWARDING', description: 'Forward aux channels to servo outputs'}
             );
         }
 
