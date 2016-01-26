@@ -462,7 +462,17 @@
     "configurationRFLoopControl": {
         "message": "RC_LOOP_CTRL"
     },	
-    "configurationFeaturesHelp": {
+    "configurationRFMotorPWMRate": {
+        "message": "MOTOR_PWM_RATE (Hz)"
+    },
+    "configurationHelpRFLoopControl": {
+        "message": "LOW / MEDIUM / HIGH gyro DLPF<br />
+		1/4/8KHz gyro/motor write speed"
+    }, 	
+    "configurationHelpMotorPWMRate": {
+        "message": "Sets the refresh rate of the ESC signal, a setting of 1000 would be a 1khz ESC refresh rate. (Default: 400 - I don't believe this to accurately reflect the value as controlled by the rf_loop_ctrl setting)<br />Enabling the feature 'MULTISHOT_PWM_RATE' or 'ONESHOT_PWM_RATE' will use normal PWM to the motors at a frequency set by the value set in 'motor_pwm' at multishot/oneshot signal widths. When 'MULTISHOT_PWM_RATE' or 'ONESHOT_PWM_RATE' is disabled the ESC update frequency will be in sync with the looptime."
+    }, 
+	"configurationFeaturesHelp": {
         "message": "<strong>Note:</strong> Not all combinations of features are valid.  When the flight controller firmware detects invalid feature combinations conflicting features will be disabled.<br /><strong>Note:</strong> Configure serial ports <span style=\"color: red\">before</span> enabling the features that will use the ports."
     },
     
@@ -671,6 +681,15 @@
     "pidTuningAcroPlus": {
         "message": "Acro+ factor"
     },
+    "pidTuningGyroLpfHz": {
+        "message": "Gyro LPF (Hz)"
+    },
+    "pidTuningDtermLpfHz": {
+        "message": "D term LPF (Hz)"
+    },
+    "pidTuningRFLoopCtrl": {
+        "message": "RF Loop Control"
+    },	
     "pidTuningButtonSave": {
         "message": "Save"
     },

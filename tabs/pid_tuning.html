@@ -175,7 +175,7 @@
                                     name="roll" step="0.01" min="0" max="1.00" /></td>
                                 <td class="pitch"><input type="number" name="pitch" step="0.01" min="0" max="1.00" /></td>
                                 <td><input type="number" name="yaw" step="0.01" min="0" max="2.55" /></td>
-								<td class="acroplus"><input type="number" name="acroplus" step="1" min="0" max="255" /></td>
+								<td class="acroplus"><input type="number" name="acroplus"/></td>
                             </tr>
                         </tbody>
                     </table>
@@ -196,7 +196,24 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+					<table class="rate-tpa cf">
+                        <thead>
+                            <tr>
+                                <th class="gyro_lpf_hz" i18n="pidTuningGyroLpfHz"></th>
+                                <th class="dterm_lpf_hz" i18n="pidTuningDtermLpfHz"></th>
+                                <th class="rf_loop_ctrl" i18n="pidTuningRFLoopCtrl"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="gyro_lpf_hz"><input type="number" name="gyro_lpf_hz"</td>
+                                <td class="dterm_lpf_hz" style="border-bottom-left-radius: 3px;"><input type="number"
+                                    name="dterm_lpf_hz"/></td>
+                                <td class="rf_loop_ctrl"><input type="number" name="rf_loop_ctrl"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+				</div>
             </div>
         </form>
         <div class="clear-both"></div>

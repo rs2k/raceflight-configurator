@@ -178,6 +178,12 @@ TABS.pid_tuning.initialize = function (callback) {
         $('.rate-tpa input[name="yaw"]').val(RC_tuning.yaw_rate.toFixed(2));
         $('.rate-tpa input[name="tpa"]').val(RC_tuning.dynamic_THR_PID.toFixed(2));
         $('.rate-tpa input[name="tpa-breakpoint"]').val(RC_tuning.dynamic_THR_breakpoint);
+		$('.rate-tpa input[name="acroplus"]').val(RC_tuning.AcroPlusFactor);
+		
+		// Fill in data from PIDs object
+		$('.rate-tpa input[name="gyro_lpf_hz"]').val(PIDs.gyro_lpf_hz);
+		$('.rate-tpa input[name="dterm_lpf_hz"]').val(PIDs.dterm_lpf_hz);
+		$('.rate-tpa input[name="rf_loop_ctrl"]').val(PIDs.rf_loop_ctrl);
     }
 
     function form_to_pid_and_rc() {
@@ -239,6 +245,11 @@ TABS.pid_tuning.initialize = function (callback) {
         RC_tuning.yaw_rate = parseFloat($('.rate-tpa input[name="yaw"]').val());
         RC_tuning.dynamic_THR_PID = parseFloat($('.rate-tpa input[name="tpa"]').val());
         RC_tuning.dynamic_THR_breakpoint = parseInt($('.rate-tpa input[name="tpa-breakpoint"]').val());
+		RC_tuning.AcroPlusFactor = parseInt($('.rate-tpa input[name="acroplus"]').val());
+		
+		PIDs.gyro_lpf_hz = parseInt($('.rate-tpa input[name="gyro_lpf_hz"]').val());
+		PIDs.dterm_lpf_hz = parseInt($('.rate-tpa input[name="dterm_lpf_hz"]').val());
+		PIDs.rf_loop_ctrl = parseInt($('.rate-tpa input[name="rf_loop_ctrl"]').val());
     }
     function hideUnusedPids(sensors_detected) {
       $('.tab-pid_tuning table.pid_tuning').hide();

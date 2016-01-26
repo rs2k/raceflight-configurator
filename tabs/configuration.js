@@ -242,6 +242,18 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
 			];
 		}	
 
+		// generate MOTOR_PWM_RATE
+		var rfMotorPWMRate = [
+			'50',
+			'400',
+			'500',
+			'1000',
+			'2000',
+			'4000',
+			'8000',
+			'16000',
+			'32000'
+		];
 
         // generate GPS
         var gpsProtocols = [
