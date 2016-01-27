@@ -121,12 +121,12 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             {bit: 17, group: 'other', name: 'DISPLAY', description: 'OLED Screen Display'},
             {bit: 18, group: 'esc', name: 'ONESHOT125', description: 'ONESHOT ESC support (disconnect ESCs, remove props)'},
             {bit: 19, group: 'other', name: 'BLACKBOX', description: 'Blackbox flight data recorder'},
-            {bit: 21, group: 'raceflight', name: 'MULTISHOT', description: 'MULTISHOT ESC support'},			
-            {bit: 22, group: 'raceflight', name: 'USE_PWM_RATE', description: 'no gyro sync'},			
+            {bit: 21, group: 'raceflight', name: 'MULTISHOT', description: 'MULTISHOT ESC support'},            
+            {bit: 22, group: 'raceflight', name: 'USE_PWM_RATE', description: 'no gyro sync'},            
             // {bit: 23, group: 'raceflight', name: 'RESERVED', description: ''},
             {bit: 24, group: 'raceflight', name: 'TX_STYLE_EXPO', description: 'TX Style expo'},
-            {bit: 25, group: 'raceflight', name: 'SBUS_INVERTER', description: 'Control SBus hardware inverter'}			
-		];
+            {bit: 25, group: 'raceflight', name: 'SBUS_INVERTER', description: 'Control SBus hardware inverter'}
+        ];
         
         if (semver.gte(CONFIG.apiVersion, "1.12.0")) {
             features.push(
@@ -198,18 +198,18 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             });
         }
 
-		// generate MOTOR_PWM_RATE
-		var rfMotorPWMRate = [
-			'50',
-			'400',
-			'500',
-			'1000',
-			'2000',
-			'4000',
-			'8000',
-			'16000',
-			'32000'
-		];
+        // generate MOTOR_PWM_RATE
+        var rfMotorPWMRate = [
+            '50',
+            '400',
+            '500',
+            '1000',
+            '2000',
+            '4000',
+            '8000',
+            '16000',
+            '32000'
+        ];
 
         // generate GPS
         var gpsProtocols = [
@@ -237,7 +237,7 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         var rf_motor_pwm_rate_e = $('select.rf_motor_pwm_rate');
         for (var i = 0; i < rfMotorPWMRate.length; i++) {
             rf_motor_pwm_rate_e.append('<option value="' + i + '">' + rfMotorPWMRate[i] + '</option>');
-        }		
+        }        
 
         var gps_protocol_e = $('select.gps_protocol');
         for (var i = 0; i < gpsProtocols.length; i++) {
@@ -378,33 +378,33 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 index = element.data('bit'),
                 state = element.is(':checked');
 
-			if (state) {	// If feature is turned on 
+            if (state) {    // If feature is turned on 
                 BF_CONFIG.features = bit_set(BF_CONFIG.features, index);
                 if(element.attr('name') === 'MOTOR_STOP')                    
                     $('div.disarmdelay').show();
-				// Show motor pwm rate box if feature is enabled
-				if(element.attr('name') === 'USE_PWM_RATE')                    
+                // Show motor pwm rate box if feature is enabled
+                if(element.attr('name') === 'USE_PWM_RATE')                    
                     $('div.rf_motor_pwm_rate').show();
-				// Disable MULTISHOT if ONESHOT is enabled
-				if(element.attr('name') === 'ONESHOT125') {
-					if ($('input[name="MULTISHOT"]').prop('checked'))
-						$('input[name="MULTISHOT"]').click();
-				}
-				// Disable ONESHOT if MULTISHOT is enabled
-				if(element.attr('name') === 'MULTISHOT') {
-					if ($('input[name="ONESHOT125"]').prop('checked'))
-						$('input[name="ONESHOT125"]').click();
-				}
-			} else {		// If feature is turned off
+                // Disable MULTISHOT if ONESHOT is enabled
+                if(element.attr('name') === 'ONESHOT125') {
+                    if ($('input[name="MULTISHOT"]').prop('checked'))
+                        $('input[name="MULTISHOT"]').click();
+                }
+                // Disable ONESHOT if MULTISHOT is enabled
+                if(element.attr('name') === 'MULTISHOT') {
+                    if ($('input[name="ONESHOT125"]').prop('checked'))
+                        $('input[name="ONESHOT125"]').click();
+                }
+            } else {        // If feature is turned off
                 BF_CONFIG.features = bit_clear(BF_CONFIG.features, index);
                 if(element.attr('name') === 'MOTOR_STOP')
                     $('div.disarmdelay').hide();
-				// Hide motor pwm rate box if feature is disabled
-				if(element.attr('name') === 'USE_PWM_RATE')                    
-                    $('div.rf_motor_pwm_rate').hide();	
-			}
+                // Hide motor pwm rate box if feature is disabled
+                if(element.attr('name') === 'USE_PWM_RATE')                    
+                    $('div.rf_motor_pwm_rate').hide();    
+            }
         });
-		
+        
         // UI hooks
         $('input[type="radio"].feature', features_e).change(function () {
             var element = $(this),
@@ -425,8 +425,8 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
 
             });
         });
-		
-	
+        
+    
         $('a.save').click(function () {
             // gather data that doesn't have automatic change event bound
             BF_CONFIG.board_align_roll = parseInt($('input[name="board_align_roll"]').val());
