@@ -333,7 +333,7 @@ var MSP = {
                 } else {
                     RC_tuning.RC_YAW_EXPO = 0;
                 }
-				RC_tuning.AcroPlusFactor = data.getUint8(offset++);
+                RC_tuning.AcroPlusFactor = data.getUint8(offset++);
                 break;
             case MSP_codes.MSP_PID:
                 // PID data arrived, we need to scale it and save to appropriate bank / array
@@ -364,10 +364,10 @@ var MSP = {
                             break;
                     }
                 }
-				var offset = 30;
-				PIDs.gyro_lpf_hz = parseFloat((data.getUint8(offset++)));
-				PIDs.dterm_lpf_hz = parseFloat((data.getUint8(offset++)));
-				PIDs.rf_loop_ctrl = parseFloat((data.getUint8(offset++)));
+                var offset = 30;
+                PIDs.gyro_lpf_hz = parseFloat((data.getUint8(offset++)));
+                PIDs.dterm_lpf_hz = parseFloat((data.getUint8(offset++)));
+                PIDs.rf_loop_ctrl = parseFloat((data.getUint8(offset++)));
                 break;
             // Disabled, cleanflight does not use MSP_BOX.
             /*
@@ -1021,9 +1021,9 @@ MSP.crunch = function (code) {
                         break;
                 }
             }
-			buffer.push(parseInt(PIDs.gyro_lpf_hz));
-			buffer.push(parseInt(PIDs.dterm_lpf_hz));
-			buffer.push(parseInt(PIDs.rf_loop_ctrl));
+            buffer.push(parseInt(PIDs.gyro_lpf_hz));
+            buffer.push(parseInt(PIDs.dterm_lpf_hz));
+            buffer.push(parseInt(PIDs.rf_loop_ctrl));
             break;
         case MSP_codes.MSP_SET_RC_TUNING:
             buffer.push(Math.round(RC_tuning.RC_RATE * 100));
@@ -1042,10 +1042,10 @@ MSP.crunch = function (code) {
                 buffer.push(lowByte(RC_tuning.dynamic_THR_breakpoint));
                 buffer.push(highByte(RC_tuning.dynamic_THR_breakpoint));
             }
-			if (semver.gte(CONFIG.apiVersion, "1.10.0")) {
+            if (semver.gte(CONFIG.apiVersion, "1.10.0")) {
                 buffer.push(Math.round(RC_tuning.RC_YAW_EXPO * 100));
             }
-			buffer.push(Math.round(RC_tuning.AcroPlusFactor));
+            buffer.push(Math.round(RC_tuning.AcroPlusFactor));
             break;
         // Disabled, cleanflight does not use MSP_SET_BOX.
         /*

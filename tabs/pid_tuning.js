@@ -11,32 +11,32 @@ TABS.pid_tuning.initialize = function (callback) {
         GUI.active_tab = 'pid_tuning';
         googleAnalytics.sendAppView('PID Tuning');
     }
-	
-	var F4Targets = [
-		"VRCR",
-		"REVN",
-		"BJF4",
-		"REVO",
-		"SPK2",
-		"AFF4"
-	]
-	var F3Targets = [
-		"CHF3",
-		"SDF3",
-		"CLBR",
-		"SRF3",
-		"MOTO",
-		"SPKY"
-	]
+    
+    var F4Targets = [
+        "VRCR",
+        "REVN",
+        "BJF4",
+        "REVO",
+        "SPK2",
+        "AFF4"
+    ]
+    var F3Targets = [
+        "CHF3",
+        "SDF3",
+        "CLBR",
+        "SRF3",
+        "MOTO",
+        "SPKY"
+    ]
 
-	if (F4Targets.indexOf(CONFIG.boardIdentifier)) {
-		CONFIG.boardMCU = "F4";
-	} else if (F3Targets.indexOf(CONFIG.boardIdentifier)) {
-		CONFIG.boardMCU = "F3";	
-	} else	{
-		CONFIG.boardMCU = "F1";	
-	}
-	console.log(CONFIG);
+    if (F4Targets.indexOf(CONFIG.boardIdentifier)) {
+        CONFIG.boardMCU = "F4";
+    } else if (F3Targets.indexOf(CONFIG.boardIdentifier)) {
+        CONFIG.boardMCU = "F3";    
+    } else    {
+        CONFIG.boardMCU = "F1";    
+    }
+    console.log(CONFIG);
 
     function get_pid_controller() {
         if (GUI.canChangePidController) {
@@ -204,11 +204,11 @@ TABS.pid_tuning.initialize = function (callback) {
         $('.rate-tpa input[name="yaw"]').val(RC_tuning.yaw_rate.toFixed(2));
         $('.rate-tpa input[name="tpa"]').val(RC_tuning.dynamic_THR_PID.toFixed(2));
         $('.rate-tpa input[name="tpa-breakpoint"]').val(RC_tuning.dynamic_THR_breakpoint);
-		$('.rate-tpa input[name="acroplus"]').val(RC_tuning.AcroPlusFactor);
-		
-		// Fill in data from PIDs object
-		$('.rate-tpa input[name="gyro_lpf_hz"]').val(PIDs.gyro_lpf_hz);
-		$('.rate-tpa input[name="dterm_lpf_hz"]').val(PIDs.dterm_lpf_hz);
+        $('.rate-tpa input[name="acroplus"]').val(RC_tuning.AcroPlusFactor);
+        
+        // Fill in data from PIDs object
+        $('.rate-tpa input[name="gyro_lpf_hz"]').val(PIDs.gyro_lpf_hz);
+        $('.rate-tpa input[name="dterm_lpf_hz"]').val(PIDs.dterm_lpf_hz);
     }
 
     function form_to_pid_and_rc() {
@@ -270,11 +270,11 @@ TABS.pid_tuning.initialize = function (callback) {
         RC_tuning.yaw_rate = parseFloat($('.rate-tpa input[name="yaw"]').val());
         RC_tuning.dynamic_THR_PID = parseFloat($('.rate-tpa input[name="tpa"]').val());
         RC_tuning.dynamic_THR_breakpoint = parseInt($('.rate-tpa input[name="tpa-breakpoint"]').val());
-		RC_tuning.AcroPlusFactor = parseInt($('.rate-tpa input[name="acroplus"]').val());
-		
-		PIDs.gyro_lpf_hz = parseInt($('.rate-tpa input[name="gyro_lpf_hz"]').val());
-		PIDs.dterm_lpf_hz = parseInt($('.rate-tpa input[name="dterm_lpf_hz"]').val());
-		PIDs.rf_loop_ctrl = parseInt($('select[name="rf_loop_ctrl"]').val());
+        RC_tuning.AcroPlusFactor = parseInt($('.rate-tpa input[name="acroplus"]').val());
+        
+        PIDs.gyro_lpf_hz = parseInt($('.rate-tpa input[name="gyro_lpf_hz"]').val());
+        PIDs.dterm_lpf_hz = parseInt($('.rate-tpa input[name="dterm_lpf_hz"]').val());
+        PIDs.rf_loop_ctrl = parseInt($('select[name="rf_loop_ctrl"]').val());
     }
     function hideUnusedPids(sensors_detected) {
       $('.tab-pid_tuning table.pid_tuning').hide();
@@ -323,51 +323,51 @@ TABS.pid_tuning.initialize = function (callback) {
 
         pid_and_rc_to_form();
 
-// START OF RF_LOOP_CTRL		
+// START OF RF_LOOP_CTRL
         var pidRFLoopCtrl_e = $('select[name="rf_loop_ctrl"]');
         var pidRFLoopCtrlList;
 
-		switch (CONFIG.boardMCU) {
-			case "F4":
-				pidRFLoopCtrlList = [
-					{ id: 0, name: "H1"},
-					{ id: 1,name: "H2"},
-					{ id: 2, name: "H4"},
-					{ id: 3, name: "H8"},
-					{ id: 4, name: "L1"},
-					{ id: 5, name: "M1"},
-					{ id: 6, name: "M2"},
-					{ id: 7, name: "M4"},
-					{ id: 8, name: "M8"}
-					]
-				break;
-			case "F3":
-				pidRFLoopCtrlList = [
-					{ id: 1,name: "H2"},
-					{ id: 6, name: "M2"},
-					{ id: 7, name: "M4"},
-					{ id: 8, name: "M8"}
-					]
-				break;
-			default: // F1 Targets
-				pidRFLoopCtrlList = [
-					{ id: 4, name: "L1"},
-					{ id: 6, name: "M2"}
-					]
-			}
-			
-			for (var i = 0; i < pidRFLoopCtrlList.length; i++) {
+        switch (CONFIG.boardMCU) {
+            case "F4":
+                pidRFLoopCtrlList = [
+                    { id: 0, name: "H1"},
+                    { id: 1, name: "H2"},
+                    { id: 2, name: "H4"},
+                    { id: 3, name: "H8"},
+                    { id: 4, name: "L1"},
+                    { id: 5, name: "M1"},
+                    { id: 6, name: "M2"},
+                    { id: 7, name: "M4"},
+                    { id: 8, name: "M8"}
+                    ]
+                break;
+            case "F3":
+                pidRFLoopCtrlList = [
+                    { id: 1, name: "H2"},
+                    { id: 6, name: "M2"},
+                    { id: 7, name: "M4"},
+                    { id: 8, name: "M8"}
+                    ]
+                break;
+            default: // F1 Targets
+                pidRFLoopCtrlList = [
+                    { id: 4, name: "L1"},
+                    { id: 6, name: "M2"}
+                    ]
+            }
+            
+            for (var i = 0; i < pidRFLoopCtrlList.length; i++) {
             pidRFLoopCtrl_e.append('<option value="' + (pidRFLoopCtrlList[i].id) + '">' + pidRFLoopCtrlList[i].name + '</option>');
         }
-		// Load current stored value
-		pidRFLoopCtrl_e.val(PIDs.rf_loop_ctrl);
+        // Load current stored value
+        pidRFLoopCtrl_e.val(PIDs.rf_loop_ctrl);
 
-		pidRFLoopCtrl_e.change(function () {
+        pidRFLoopCtrl_e.change(function () {
             PIDs.rf_loop_ctrl = parseInt($(this).val());
-			TABS.pid_tuning.controllerChanged = false;
+            TABS.pid_tuning.controllerChanged = false;
         });
-		
-// END OF RF_LOOP_CTRL		
+        
+// END OF RF_LOOP_CTRL        
         var pidController_e = $('select[name="controller"]');
 
 
