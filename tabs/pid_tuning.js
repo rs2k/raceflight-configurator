@@ -11,6 +11,32 @@ TABS.pid_tuning.initialize = function (callback) {
         GUI.active_tab = 'pid_tuning';
         googleAnalytics.sendAppView('PID Tuning');
     }
+	
+	var F4Targets = [
+		"VRCR",
+		"REVN",
+		"BJF4",
+		"REVO",
+		"SPK2",
+		"AFF4"
+	]
+	var F3Targets = [
+		"CHF3",
+		"SDF3",
+		"CLBR",
+		"SRF3",
+		"MOTO",
+		"SPKY"
+	]
+
+	if (F4Targets.indexOf(CONFIG.boardIdentifier)) {
+		CONFIG.boardMCU = "F4";
+	} else if (F3Targets.indexOf(CONFIG.boardIdentifier)) {
+		CONFIG.boardMCU = "F3";	
+	} else	{
+		CONFIG.boardMCU = "F1";	
+	}
+	console.log(CONFIG);
 
     function get_pid_controller() {
         if (GUI.canChangePidController) {
@@ -299,29 +325,44 @@ TABS.pid_tuning.initialize = function (callback) {
 
 // START OF RF_LOOP_CTRL		
         var pidRFLoopCtrl_e = $('select[name="rf_loop_ctrl"]');
-
-
         var pidRFLoopCtrlList;
 
-
-            pidRFLoopCtrlList = [
-                { name: "H1"},
-                { name: "H2"},
-                { name: "H4"},
-                { name: "H8"},
-                { name: "L1"},
-                { name: "M1"},
-                { name: "M2"},
-				{ name: "M4"},
-				{ name: "M8"}
-				]
-
-		for (var i = 0; i < pidRFLoopCtrlList.length; i++) {
-            pidRFLoopCtrl_e.append('<option value="' + (i) + '">' + pidRFLoopCtrlList[i].name + '</option>');
+		switch (CONFIG.boardMCU) {
+			case "F4":
+				pidRFLoopCtrlList = [
+					{ id: 0, name: "H1"},
+					{ id: 1,name: "H2"},
+					{ id: 2, name: "H4"},
+					{ id: 3, name: "H8"},
+					{ id: 4, name: "L1"},
+					{ id: 5, name: "M1"},
+					{ id: 6, name: "M2"},
+					{ id: 7, name: "M4"},
+					{ id: 8, name: "M8"}
+					]
+				break;
+			case "F3":
+				pidRFLoopCtrlList = [
+					{ id: 1,name: "H2"},
+					{ id: 6, name: "M2"},
+					{ id: 7, name: "M4"},
+					{ id: 8, name: "M8"}
+					]
+				break;
+			default: // F1 Targets
+				pidRFLoopCtrlList = [
+					{ id: 4, name: "L1"},
+					{ id: 6, name: "M2"}
+					]
+			}
+			
+			for (var i = 0; i < pidRFLoopCtrlList.length; i++) {
+            pidRFLoopCtrl_e.append('<option value="' + (pidRFLoopCtrlList[i].id) + '">' + pidRFLoopCtrlList[i].name + '</option>');
         }
+		// Load current stored value
 		pidRFLoopCtrl_e.val(PIDs.rf_loop_ctrl);
 
-        pidRFLoopCtrl_e.change(function () {
+		pidRFLoopCtrl_e.change(function () {
             PIDs.rf_loop_ctrl = parseInt($(this).val());
 			TABS.pid_tuning.controllerChanged = false;
         });
