@@ -364,10 +364,11 @@ var MSP = {
                             break;
                     }
                 }
-                var offset = 30;
-                PIDs.gyro_lpf_hz = parseFloat((data.getUint8(offset++)));
-                PIDs.dterm_lpf_hz = parseFloat((data.getUint8(offset++)));
-                PIDs.rf_loop_ctrl = parseFloat((data.getUint8(offset++)));
+                if(message_length > 29) {
+                    var offset = 30;
+                    PIDs.gyro_lpf_hz = parseFloat((data.getUint8(offset++)));
+                    PIDs.dterm_lpf_hz = parseFloat((data.getUint8(offset++)));
+                }
                 break;
             // Disabled, cleanflight does not use MSP_BOX.
             /*
@@ -391,7 +392,7 @@ var MSP = {
                     FC_CONFIG.loopTime = data.getInt16(0, 1);
                 }
                 break;
-            case MSP_codes.MSP_MISC: // 22 bytes
+            case MSP_codes.MSP_MISC: // 23 bytes
                 var offset = 0;
                 MISC.midrc = data.getInt16(offset, 1);
                 offset += 2;
@@ -415,6 +416,8 @@ var MSP = {
                 MISC.vbatmincellvoltage = data.getUint8(offset++, 1) / 10; // 10-50
                 MISC.vbatmaxcellvoltage = data.getUint8(offset++, 1) / 10; // 10-50
                 MISC.vbatwarningcellvoltage = data.getUint8(offset++, 1) / 10; // 10-50
+                MISC.motor_pwm_rate = parseFloat((data.getUint8(offset++)));
+                MISC.rf_loop_ctrl = parseFloat((data.getUint8(offset++)));
                 break;
             case MSP_codes.MSP_3D:
                 var offset = 0;
@@ -1023,7 +1026,6 @@ MSP.crunch = function (code) {
             }
             buffer.push(parseInt(PIDs.gyro_lpf_hz));
             buffer.push(parseInt(PIDs.dterm_lpf_hz));
-            buffer.push(parseInt(PIDs.rf_loop_ctrl));
             break;
         case MSP_codes.MSP_SET_RC_TUNING:
             buffer.push(Math.round(RC_tuning.RC_RATE * 100));
@@ -1098,6 +1100,8 @@ MSP.crunch = function (code) {
             buffer.push(Math.round(MISC.vbatmincellvoltage * 10));
             buffer.push(Math.round(MISC.vbatmaxcellvoltage * 10));
             buffer.push(Math.round(MISC.vbatwarningcellvoltage * 10));
+            buffer.push(parseInt(MISC.motor_pwm_rate));
+            buffer.push(parseInt(MISC.rf_loop_ctrl));
             break;
         case MSP_codes.MSP_SET_CHANNEL_FORWARDING:
             for (var i = 0; i < SERVO_CONFIG.length; i++) {
