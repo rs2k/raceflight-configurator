@@ -183,7 +183,6 @@ TABS.pid_tuning.initialize = function (callback) {
 		// Fill in data from PIDs object
 		$('.rate-tpa input[name="gyro_lpf_hz"]').val(PIDs.gyro_lpf_hz);
 		$('.rate-tpa input[name="dterm_lpf_hz"]').val(PIDs.dterm_lpf_hz);
-		$('.rate-tpa input[name="rf_loop_ctrl"]').val(PIDs.rf_loop_ctrl);
     }
 
     function form_to_pid_and_rc() {
@@ -249,7 +248,7 @@ TABS.pid_tuning.initialize = function (callback) {
 		
 		PIDs.gyro_lpf_hz = parseInt($('.rate-tpa input[name="gyro_lpf_hz"]').val());
 		PIDs.dterm_lpf_hz = parseInt($('.rate-tpa input[name="dterm_lpf_hz"]').val());
-		PIDs.rf_loop_ctrl = parseInt($('.rate-tpa input[name="rf_loop_ctrl"]').val());
+		PIDs.rf_loop_ctrl = parseInt($('select[name="rf_loop_ctrl"]').val());
     }
     function hideUnusedPids(sensors_detected) {
       $('.tab-pid_tuning table.pid_tuning').hide();
@@ -298,6 +297,36 @@ TABS.pid_tuning.initialize = function (callback) {
 
         pid_and_rc_to_form();
 
+// START OF RF_LOOP_CTRL		
+        var pidRFLoopCtrl_e = $('select[name="rf_loop_ctrl"]');
+
+
+        var pidRFLoopCtrlList;
+
+
+            pidRFLoopCtrlList = [
+                { name: "H1"},
+                { name: "H2"},
+                { name: "H4"},
+                { name: "H8"},
+                { name: "L1"},
+                { name: "M1"},
+                { name: "M2"},
+				{ name: "M4"},
+				{ name: "M8"}
+				]
+
+		for (var i = 0; i < pidRFLoopCtrlList.length; i++) {
+            pidRFLoopCtrl_e.append('<option value="' + (i) + '">' + pidRFLoopCtrlList[i].name + '</option>');
+        }
+		pidRFLoopCtrl_e.val(PIDs.rf_loop_ctrl);
+
+        pidRFLoopCtrl_e.change(function () {
+            PIDs.rf_loop_ctrl = parseInt($(this).val());
+			TABS.pid_tuning.controllerChanged = false;
+        });
+		
+// END OF RF_LOOP_CTRL		
         var pidController_e = $('select[name="controller"]');
 
 
