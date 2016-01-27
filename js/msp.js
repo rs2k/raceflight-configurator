@@ -333,7 +333,6 @@ var MSP = {
                 } else {
                     RC_tuning.RC_YAW_EXPO = 0;
                 }
-				RC_tuning.dynamic_THR_breakpoint = data.getUint16(offset, 1);
 				RC_tuning.AcroPlusFactor = data.getUint8(offset++);
                 break;
             case MSP_codes.MSP_PID:
