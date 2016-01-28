@@ -186,6 +186,8 @@ TABS.pid_tuning.initialize = function (callback) {
             // Fill in data from PIDs object
             $('.rate-tpa input[name="gyro_lpf_hz"]').val(PIDs.gyro_lpf_hz);
             $('.rate-tpa input[name="dterm_lpf_hz"]').val(PIDs.dterm_lpf_hz);
+            
+            $('div.rfWrongFirmwareNote').hide();
         } else {
             $('input[name="acroplus"]').prop('disabled', 'disabled');
             $('input[name="gyro_lpf_hz"]').prop('disabled', 'disabled');
