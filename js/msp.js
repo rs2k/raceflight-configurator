@@ -392,7 +392,7 @@ var MSP = {
                     FC_CONFIG.loopTime = data.getInt16(0, 1);
                 }
                 break;
-            case MSP_codes.MSP_MISC: // 23 bytes
+            case MSP_codes.MSP_MISC: // 25 bytes
                 var offset = 0;
                 MISC.midrc = data.getInt16(offset, 1);
                 offset += 2;
@@ -416,8 +416,9 @@ var MSP = {
                 MISC.vbatmincellvoltage = data.getUint8(offset++, 1) / 10; // 10-50
                 MISC.vbatmaxcellvoltage = data.getUint8(offset++, 1) / 10; // 10-50
                 MISC.vbatwarningcellvoltage = data.getUint8(offset++, 1) / 10; // 10-50
-                MISC.motor_pwm_rate = parseFloat((data.getUint8(offset++)));
                 MISC.rf_loop_ctrl = parseFloat((data.getUint8(offset++)));
+                MISC.motor_pwm_rate = parseFloat((data.getInt16(offset, 1)));
+                offset += 2;
                 break;
             case MSP_codes.MSP_3D:
                 var offset = 0;
@@ -1100,8 +1101,9 @@ MSP.crunch = function (code) {
             buffer.push(Math.round(MISC.vbatmincellvoltage * 10));
             buffer.push(Math.round(MISC.vbatmaxcellvoltage * 10));
             buffer.push(Math.round(MISC.vbatwarningcellvoltage * 10));
-            buffer.push(parseInt(MISC.motor_pwm_rate));
             buffer.push(parseInt(MISC.rf_loop_ctrl));
+            buffer.push(lowByte(MISC.motor_pwm_rate));
+            buffer.push(highByte(MISC.motor_pwm_rate));
             break;
         case MSP_codes.MSP_SET_CHANNEL_FORWARDING:
             for (var i = 0; i < SERVO_CONFIG.length; i++) {
