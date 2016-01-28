@@ -10,6 +10,31 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         googleAnalytics.sendAppView('Configuration');
     }
 
+    var F4Targets = [
+        "VRCR",
+        "REVN",
+        "BJF4",
+        "REVO",
+        "SPK2",
+        "AFF4"
+    ]
+    var F3Targets = [
+        "CHF3",
+        "SDF3",
+        "CLBR",
+        "SRF3",
+        "MOTO",
+        "SPKY"
+    ]
+
+    if (F4Targets.indexOf(CONFIG.boardIdentifier)) {
+        CONFIG.boardMCU = "F4";
+    } else if (F3Targets.indexOf(CONFIG.boardIdentifier)) {
+        CONFIG.boardMCU = "F3";    
+    } else    {
+        CONFIG.boardMCU = "F1";    
+    }
+
     function load_config() {
         MSP.send_message(MSP_codes.MSP_BF_CONFIG, false, false, load_serial_config);
     }
@@ -197,6 +222,58 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 $(this).prop('checked', state);
             });
         }
+        
+// START OF RF_LOOP_CTRL
+        var RFLoopCtrl_e = $('select.rf_loop_ctrl');
+      
+        var RFLoopCtrlList;
+        var RFLoopCtrlLookup = ["H1","H2","H4","H8","L1","M1","M2","M4","M8"]
+        
+        /*
+                            { id: 0, name: "H1"},
+                    { id: 1, name: "H2"},
+                    { id: 2, name: "H4"},
+                    { id: 3, name: "H8"},
+                    { id: 4, name: "L1"},
+                    { id: 5, name: "M1"},
+                    { id: 6, name: "M2"},
+                    { id: 7, name: "M4"},
+                    { id: 8, name: "M8"}
+        */
+        
+        switch (CONFIG.boardMCU) {
+            case "F4":
+                RFLoopCtrlList = [0,1,2,3,4,5,6,7,8]
+                break;
+            case "F3":
+                RFLoopCtrlList = [1,6,7,8]
+                break;
+            default: // F1 Targets
+                RFLoopCtrlList = [4,6]
+            }
+		var inCompatibleLoopCtrlValues = [3,8]
+
+        //not show M8 and H8 is OneShot125 (18) is enabled and use_pwm_rate (22) is not enabled?
+        if(bit_check(BF_CONFIG.features, 18) && !bit_check(BF_CONFIG.features, 22) ) {
+            for(var i = 0; i < inCompatibleLoopCtrlValues.length; i++) {
+                var index = RFLoopCtrlList.indexOf(inCompatibleLoopCtrlValues[i]);
+                if(index) {
+					RFLoopCtrlList.splice(index,1);
+					}
+            }
+		}
+            
+        for (var i = 0; i < RFLoopCtrlList.length; i++) {
+            RFLoopCtrl_e.append('<option value="' + (RFLoopCtrlList[i]) + '">' + RFLoopCtrlLookup[RFLoopCtrlList[i]] + '</option>');
+        }
+        // Load current stored value
+        RFLoopCtrl_e.val(MISC.rf_loop_ctrl);
+
+        RFLoopCtrl_e.change(function () {
+            MISC.rf_loop_ctrl = parseInt($(this).val());
+        });
+        
+// END OF RF_LOOP_CTRL                
 
         // generate MOTOR_PWM_RATE
         var rfMotorPWMRate = [
@@ -234,9 +311,9 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             'Indian GAGAN'
         ];
 
-        var rf_motor_pwm_rate_e = $('select.rf_motor_pwm_rate');
+        var motor_pwm_rate_e = $('select.motor_pwm_rate');
         for (var i = 0; i < rfMotorPWMRate.length; i++) {
-            rf_motor_pwm_rate_e.append('<option value="' + i + '">' + rfMotorPWMRate[i] + '</option>');
+            motor_pwm_rate_e.append('<option value="' + rfMotorPWMRate[i] + '">' + rfMotorPWMRate[i] + '</option>');
         }        
 
         var gps_protocol_e = $('select.gps_protocol');
@@ -329,12 +406,15 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             else
                 $('div.disarmdelay').hide();
              if(bit_check(BF_CONFIG.features, 22))//USE_PWM_RATE
-                $('div.rf_motor_pwm_rate').show();
+                $('div.motor_pwm_rate').show();
             else
-                $('div.rf_motor_pwm_rate').hide();
+                $('div.motor_pwm_rate').hide();
             // fill FC loop time
             $('input[name="looptime"]').val(FC_CONFIG.loopTime);
 
+            // hide note by default
+            $('div.rfLoopCtrlNote').hide();
+            
             recalculate_cycles_sec();
             
             $('div.cycles').show();
@@ -358,6 +438,12 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         $('input[name="currentoffset"]').val(BF_CONFIG.currentoffset);
         $('input[name="multiwiicurrentoutput"]').prop('checked', MISC.multiwiicurrentoutput);
 
+               //fill motor_pwm_rate
+        $('select.motor_pwm_rate').val(MISC.motor_pwm_rate);
+        
+        //fill rf_loop_ctrl        
+        $('select.rf_loop_ctrl').val(MISC.rf_loop_ctrl);
+        
         //fill 3D
         if (semver.lt(CONFIG.apiVersion, "1.14.0")) {
             $('.tab-configuration .3d').hide();
@@ -367,7 +453,7 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             $('input[name="3dneutral"]').val(_3D.neutral3d);
             $('input[name="3ddeadbandthrottle"]').val(_3D.deadband3d_throttle);
         }
-
+        
         // UI hooks
         $('input[name="looptime"]').change(function() {
             recalculate_cycles_sec();
@@ -383,8 +469,11 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 if(element.attr('name') === 'MOTOR_STOP')                    
                     $('div.disarmdelay').show();
                 // Show motor pwm rate box if feature is enabled
-                if(element.attr('name') === 'USE_PWM_RATE')                    
-                    $('div.rf_motor_pwm_rate').show();
+                if(element.attr('name') === 'USE_PWM_RATE') {
+                    $('div.motor_pwm_rate').show();
+                    if(bit_check(BF_CONFIG.features, 18))
+                        $('div.rfLoopCtrlNote').show();
+                }
                 // Disable MULTISHOT if ONESHOT is enabled
                 if(element.attr('name') === 'ONESHOT125') {
                     if ($('input[name="MULTISHOT"]').prop('checked'))
@@ -400,8 +489,10 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 if(element.attr('name') === 'MOTOR_STOP')
                     $('div.disarmdelay').hide();
                 // Hide motor pwm rate box if feature is disabled
-                if(element.attr('name') === 'USE_PWM_RATE')                    
-                    $('div.rf_motor_pwm_rate').hide();    
+                if(element.attr('name') === 'USE_PWM_RATE') {
+                    $('div.rfLoopCtrlNote').hide();
+                    $('div.motor_pwm_rate').hide();
+                }
             }
         });
         
@@ -459,6 +550,24 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             BF_CONFIG.currentoffset = parseInt($('input[name="currentoffset"]').val());
             MISC.multiwiicurrentoutput = ~~$('input[name="multiwiicurrentoutput"]').is(':checked'); // ~~ boolean to decimal conversion
 
+			// Check for incompatible feature & loop_ctrl value
+			if(bit_check(BF_CONFIG.features, 18) && !bit_check(BF_CONFIG.features, 22) ) {
+				for(var i = 0; i < inCompatibleLoopCtrlValues.length; i++) {
+					var index = RFLoopCtrlList.indexOf(inCompatibleLoopCtrlValues[i]);
+					if(index) {
+						$('select.rf_loop_ctrl').val(0);
+						console.log("Incompatible loop_ctrl value, reverting to H1")
+					}
+					else {
+						console.log("loop_ctrl is compatible with desired features!")
+					}
+				}
+	
+			}
+		
+            MISC.motor_pwm_rate = parseInt($('select.motor_pwm_rate').val());
+            MISC.rf_loop_ctrl = parseInt($('select.rf_loop_ctrl').val());
+			
             _3D.deadband3d_low = parseInt($('input[name="3ddeadbandlow"]').val());
             _3D.deadband3d_high = parseInt($('input[name="3ddeadbandhigh"]').val());
             _3D.neutral3d = parseInt($('input[name="3dneutral"]').val());
