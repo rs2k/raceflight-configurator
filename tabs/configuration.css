@@ -109,6 +109,10 @@
     margin-left: 0px;
 }
 
+.pointerDisabled {
+    pointer-events: none;
+}
+
 .tab-configuration .raceflight .line {
     clear: left;
 }

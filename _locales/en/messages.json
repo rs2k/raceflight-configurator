@@ -475,6 +475,12 @@
     "configurationHelpMotorPWMRate": {
         "message": "<strong>MOTOR_PWM_RATE</strong><br/>Sets the refresh rate of the ESC signal, a setting of 1000 would be a 1khz ESC refresh rate. (Default: 400)<br />Enabling the feature 'USE_PWM_RATE' will use normal PWM to the motors at a frequency set by this value at multishot/oneshot signal widths. Without USE_PWM_RATE the ESC update frequency will be in sync with the looptime."
     }, 
+    "configurationRFWrongFirmwareNote": {
+        "message": "<strong>Note:</strong> These cool features are only enabled when using <strong>RaceFlight</strong> firmware!"
+    },
+    "pidRFWrongFirmwareNote": {
+        "message": "<strong>Note:</strong> Some of these cool features are only enabled when using <strong>RaceFlight</strong> firmware!"
+    },
     "configurationFeaturesHelp": {
         "message": "<strong>Note:</strong> Not all combinations of features are valid.  When the flight controller firmware detects invalid feature combinations conflicting features will be disabled.<br /><strong>Note:</strong> Configure serial ports <span style=\"color: red\">before</span> enabling the features that will use the ports."
     },

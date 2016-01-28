@@ -246,7 +246,7 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 RFLoopCtrlList = [0,1,2,3,4,5,6,7,8]
                 break;
             case "F3":
-                RFLoopCtrlList = [1,6,7,8]
+                RFLoopCtrlList = [1,4,6]
                 break;
             default: // F1 Targets
                 RFLoopCtrlList = [4,6]
@@ -409,16 +409,18 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 $('div.motor_pwm_rate').show();
             else
                 $('div.motor_pwm_rate').hide();
+
             // fill FC loop time
             $('input[name="looptime"]').val(FC_CONFIG.loopTime);
 
-            // hide note by default
-            $('div.rfLoopCtrlNote').hide();
-            
             recalculate_cycles_sec();
             
             $('div.cycles').show();
         }
+        
+        // hide notes by default
+        $('div.rfLoopCtrlNote').hide();
+        $('div.rfWrongFirmwareNote').hide();
         
         // fill throttle
         $('input[name="minthrottle"]').val(MISC.minthrottle);
@@ -438,11 +440,20 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         $('input[name="currentoffset"]').val(BF_CONFIG.currentoffset);
         $('input[name="multiwiicurrentoutput"]').prop('checked', MISC.multiwiicurrentoutput);
 
-               //fill motor_pwm_rate
-        $('select.motor_pwm_rate').val(MISC.motor_pwm_rate);
-        
-        //fill rf_loop_ctrl        
-        $('select.rf_loop_ctrl').val(MISC.rf_loop_ctrl);
+        if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
+            //fill motor_pwm_rate
+            $('select.motor_pwm_rate').val(MISC.motor_pwm_rate);
+            
+            //fill rf_loop_ctrl        
+            $('select.rf_loop_ctrl').val(MISC.rf_loop_ctrl);
+        } else {
+            $('div.motor_pwm_rate').show();
+            $('select.motor_pwm_rate').prop('disabled', 'disabled');
+            $('select.rf_loop_ctrl').prop('disabled', 'disabled');
+            $('div.rfWrongFirmwareNote').show();
+            
+            $('div.raceflight').addClass("pointerDisabled");
+        }
         
         //fill 3D
         if (semver.lt(CONFIG.apiVersion, "1.14.0")) {
