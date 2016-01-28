@@ -27,9 +27,9 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         "SPKY"
     ]
 
-    if (F4Targets.indexOf(CONFIG.boardIdentifier)) {
+    if (F4Targets.indexOf(CONFIG.boardIdentifier) >= 0) {
         CONFIG.boardMCU = "F4";
-    } else if (F3Targets.indexOf(CONFIG.boardIdentifier)) {
+    } else if (F3Targets.indexOf(CONFIG.boardIdentifier >= 0)) {
         CONFIG.boardMCU = "F3";    
     } else    {
         CONFIG.boardMCU = "F1";    
