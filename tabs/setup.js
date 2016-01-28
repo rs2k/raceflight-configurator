@@ -7,6 +7,8 @@ TABS.setup = {
 TABS.setup.initialize = function (callback) {
     var self = this;
 
+
+	
     if (GUI.active_tab != 'setup') {
         GUI.active_tab = 'setup';
         googleAnalytics.sendAppView('Setup');
@@ -54,7 +56,27 @@ TABS.setup.initialize = function (callback) {
         // set heading in interactive block
         $('span.heading').text(chrome.i18n.getMessage('initialSetupAttitude', [0]));
 
+		var board_identifier = BOARD.find_board_definition(CONFIG.boardIdentifier).identifier;
+		var board_name = BOARD.find_board_definition(CONFIG.boardIdentifier).name;
+		var board_image;
+		var board_image_detail;
+        var board_path = 'images/boards/'
+        var board_images = ['REVN','REVO']
+        
+		// update board name
+		console.log('Using board definition', board_name);
+		$('#boardname').text(board_name);
 
+        if(board_images.indexOf(board_identifier) >= 0) {
+            board_image = board_path + board_identifier + '.png'
+            board_image_detail = board_path + board_identifier + '_detail.png'
+        } else {
+            board_image = board_path + 'unknown.png'
+            board_image_detail = board_path + 'unknown.png'
+        }
+
+		$('#board img').attr('src', board_image);
+		$('#board_detail img').attr('src', board_image_detail);
         // check if we have magnetometer
         if (!bit_check(CONFIG.activeSensors, 2)) {
             $('a.calibrateMag').addClass('disabled');

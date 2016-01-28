@@ -339,6 +339,9 @@
     "initialSetupMinCommand": {
         "message": "MinCommand:"
     },
+    "initialSetupBoardHead": {
+        "message": "Board"
+    },
     "initialSetupBatteryHead": {
         "message": "Battery"
     },
