@@ -211,7 +211,7 @@ var MSP = {
     },
     process_data: function (code, message_buffer, message_length) {
         var data = new DataView(message_buffer, 0); // DataView (allowing us to view arrayBuffer as struct/union)
-console.log(CONFIG.apiVersion);
+
         if (!this.unsupported) switch (code) {
             case MSP_codes.MSP_IDENT:
                 console.log('Using deprecated msp command: MSP_IDENT');
