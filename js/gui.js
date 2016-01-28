@@ -296,6 +296,15 @@ GUI_control.prototype.content_ready = function (callback) {
             outside: 'x'
             });
         });
+        
+        new jBox('Modal', {
+            id: 'jBox-boardDetail',
+            attach: $('#board'),
+            title: 'Boad details',
+            content: $('#board_detail'),
+            maxWidth: 600,
+            maxHeight: 600
+        });
     });
 
     if (callback) callback();
