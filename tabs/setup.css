@@ -48,6 +48,22 @@
     width: 100%;
 }
 
+#board {
+    text-align: center;
+}
+#board img{
+    max-width: 100%;
+}
+
+#board_detail {
+    display:none;
+}
+
+#jBox-boardDetail .jBox-container {
+    max-width: 600px;
+    text-align: center;
+}
+
 #interactive_block a.reset {
     position: absolute;
     display: block;
