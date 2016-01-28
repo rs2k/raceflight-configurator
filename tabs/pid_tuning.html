@@ -164,6 +164,7 @@
                                 <th class="roll" i18n="pidTuningRollRate"></th>
                                 <th class="pitch" i18n="pidTuningPitchRate"></th>
                                 <th i18n="pidTuningYawRate"></th>
+								<th class="acroplus" i18n="pidTuningAcroPlus"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -174,6 +175,7 @@
                                     name="roll" step="0.01" min="0" max="1.00" /></td>
                                 <td class="pitch"><input type="number" name="pitch" step="0.01" min="0" max="1.00" /></td>
                                 <td><input type="number" name="yaw" step="0.01" min="0" max="2.55" /></td>
+								<td class="acroplus"><input type="number" name="acroplus"/></td>
                             </tr>
                         </tbody>
                     </table>
@@ -194,7 +196,27 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                        <div class="rfWrongFirmwareNote note">
+                            <div class="note_spacer">
+                                <p i18n="pidRFWrongFirmwareNote"></p>
+                            </div>
+                        </div>
+					<table class="rate-tpa cf">
+                        <thead>
+                            <tr>
+                                <th class="gyro_lpf_hz" i18n="pidTuningGyroLpfHz"></th>
+                                <th class="dterm_lpf_hz" i18n="pidTuningDtermLpfHz"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="gyro_lpf_hz"><input type="number" name="gyro_lpf_hz"</td>
+                                <td class="dterm_lpf_hz" style="border-bottom-left-radius: 3px;"><input type="number"
+                                    name="dterm_lpf_hz"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+				</div>
             </div>
         </form>
         <div class="clear-both"></div>

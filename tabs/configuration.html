@@ -118,8 +118,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="rightWrapper acc">
             <div class="gui_box grey">
                 <div class="gui_box_titlebar">
                     <div class="spacer_box_title" i18n="configurationAccelTrims"></div>
@@ -137,6 +135,57 @@
                     </div>
                 </div>
             </div>
+		</div>
+        <div class="rightWrapper raceflight">
+			<div class="gui_box grey">
+				<div class="gui_box_titlebar">
+					<div class="spacer_box_title" i18n="configurationRFFeatures"></div>
+				</div>
+				<div class="spacer_box">
+                    <div class="rfWrongFirmwareNote note">
+                        <div class="note_spacer">
+                            <p i18n="configurationRFWrongFirmwareNote"></p>
+                        </div>
+                    </div>
+                    <table cellpadding="0" cellspacing="0">
+                        <thead style="display: none;">
+                            <tr>
+                                <th i18n="configurationFeatureEnabled"></th>
+                                <th i18n="configurationFeatureDescription"></th>
+                                <th i18n="configurationFeatureName"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="features raceflight">
+                            <!-- table generated here -->
+                        </tbody>
+                    </table>
+					<div class="line">
+                        <div class="rfLoopCtrlNote note">
+                            <div class="note_spacer">
+                            <p i18n="configurationRFLoopCtrlNote"></p>
+                            </div>
+                        </div>
+                        <select class="rf_loop_ctrl">
+                            <!-- list generated here -->
+                        </select>
+						<span i18n="configurationRFLoopControl"></span>
+						<div class="helpicon cf_tip">
+							<div class="cf_tooltiptext" i18n="configurationHelpRFLoopControl" style="display: none;"></div>
+						</div>
+                    </div>
+					<div class="line">                    
+                        <div class="line motor_pwm_rate">
+                            <select class="motor_pwm_rate">
+                                <!-- list generated here -->
+                            </select>
+                            <span i18n="configurationRFMotorPWMRate"></span>
+                            <div class="helpicon cf_tip">
+                                <div class="cf_tooltiptext" i18n="configurationHelpMotorPWMRate" style="display: none;"></div>
+                            </div>
+                        </div>					
+                    </div>
+                </div>
+			</div>
         </div>
         <div class="clear-both"></div>
         <div class="leftWrapper">

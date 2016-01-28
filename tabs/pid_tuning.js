@@ -11,7 +11,7 @@ TABS.pid_tuning.initialize = function (callback) {
         GUI.active_tab = 'pid_tuning';
         googleAnalytics.sendAppView('PID Tuning');
     }
-
+    
     function get_pid_controller() {
         if (GUI.canChangePidController) {
             MSP.send_message(MSP_codes.MSP_PID_CONTROLLER, false, false, get_pid_names);
@@ -178,6 +178,22 @@ TABS.pid_tuning.initialize = function (callback) {
         $('.rate-tpa input[name="yaw"]').val(RC_tuning.yaw_rate.toFixed(2));
         $('.rate-tpa input[name="tpa"]').val(RC_tuning.dynamic_THR_PID.toFixed(2));
         $('.rate-tpa input[name="tpa-breakpoint"]').val(RC_tuning.dynamic_THR_breakpoint);
+
+        if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
+            // Fill in acroplus data from RC_tuning object
+            $('.rate-tpa input[name="acroplus"]').val(RC_tuning.AcroPlusFactor);
+            
+            // Fill in data from PIDs object
+            $('.rate-tpa input[name="gyro_lpf_hz"]').val(PIDs.gyro_lpf_hz);
+            $('.rate-tpa input[name="dterm_lpf_hz"]').val(PIDs.dterm_lpf_hz);
+            
+            $('div.rfWrongFirmwareNote').hide();
+        } else {
+            $('input[name="acroplus"]').prop('disabled', 'disabled');
+            $('input[name="gyro_lpf_hz"]').prop('disabled', 'disabled');
+            $('input[name="dterm_lpf_hz"]').prop('disabled', 'disabled');
+            $('div.rfWrongFirmwareNote').show();
+        }
     }
 
     function form_to_pid_and_rc() {
@@ -239,6 +255,9 @@ TABS.pid_tuning.initialize = function (callback) {
         RC_tuning.yaw_rate = parseFloat($('.rate-tpa input[name="yaw"]').val());
         RC_tuning.dynamic_THR_PID = parseFloat($('.rate-tpa input[name="tpa"]').val());
         RC_tuning.dynamic_THR_breakpoint = parseInt($('.rate-tpa input[name="tpa-breakpoint"]').val());
+        RC_tuning.AcroPlusFactor = parseInt($('.rate-tpa input[name="acroplus"]').val());
+        PIDs.gyro_lpf_hz = parseInt($('.rate-tpa input[name="gyro_lpf_hz"]').val());
+        PIDs.dterm_lpf_hz = parseInt($('.rate-tpa input[name="dterm_lpf_hz"]').val());
     }
     function hideUnusedPids(sensors_detected) {
       $('.tab-pid_tuning table.pid_tuning').hide();
@@ -288,7 +307,6 @@ TABS.pid_tuning.initialize = function (callback) {
         pid_and_rc_to_form();
 
         var pidController_e = $('select[name="controller"]');
-
 
         var pidControllerList;
 
