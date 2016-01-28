@@ -68,7 +68,6 @@ TABS.setup.initialize = function (callback) {
 		$('#boardname').text(board_name);
 
         if(board_images.indexOf(board_identifier) >= 0) {
-            console.log(board_images.indexOf(board_identifier));
             board_image = board_path + board_identifier + '.png'
             board_image_detail = board_path + board_identifier + '_detail.png'
         } else {
