@@ -211,7 +211,7 @@ var MSP = {
     },
     process_data: function (code, message_buffer, message_length) {
         var data = new DataView(message_buffer, 0); // DataView (allowing us to view arrayBuffer as struct/union)
-
+console.log(CONFIG.apiVersion);
         if (!this.unsupported) switch (code) {
             case MSP_codes.MSP_IDENT:
                 console.log('Using deprecated msp command: MSP_IDENT');
@@ -333,7 +333,9 @@ var MSP = {
                 } else {
                     RC_tuning.RC_YAW_EXPO = 0;
                 }
-                RC_tuning.AcroPlusFactor = data.getUint8(offset++);
+                if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
+                    RC_tuning.AcroPlusFactor = data.getUint8(offset++);
+                }
                 break;
             case MSP_codes.MSP_PID:
                 // PID data arrived, we need to scale it and save to appropriate bank / array
@@ -364,7 +366,7 @@ var MSP = {
                             break;
                     }
                 }
-                if(message_length > 29) {
+                if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
                     var offset = 30;
                     PIDs.gyro_lpf_hz = parseFloat((data.getUint8(offset++)));
                     PIDs.dterm_lpf_hz = parseFloat((data.getUint8(offset++)));
@@ -416,9 +418,11 @@ var MSP = {
                 MISC.vbatmincellvoltage = data.getUint8(offset++, 1) / 10; // 10-50
                 MISC.vbatmaxcellvoltage = data.getUint8(offset++, 1) / 10; // 10-50
                 MISC.vbatwarningcellvoltage = data.getUint8(offset++, 1) / 10; // 10-50
-                MISC.rf_loop_ctrl = parseFloat((data.getUint8(offset++)));
-                MISC.motor_pwm_rate = parseFloat((data.getInt16(offset, 1)));
-                offset += 2;
+                if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
+                    MISC.rf_loop_ctrl = parseFloat((data.getUint8(offset++)));
+                    MISC.motor_pwm_rate = parseFloat((data.getInt16(offset, 1)));
+                    offset += 2;
+                }
                 break;
             case MSP_codes.MSP_3D:
                 var offset = 0;
@@ -1025,8 +1029,10 @@ MSP.crunch = function (code) {
                         break;
                 }
             }
-            buffer.push(parseInt(PIDs.gyro_lpf_hz));
-            buffer.push(parseInt(PIDs.dterm_lpf_hz));
+            if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
+                buffer.push(parseInt(PIDs.gyro_lpf_hz));
+                buffer.push(parseInt(PIDs.dterm_lpf_hz));
+            }
             break;
         case MSP_codes.MSP_SET_RC_TUNING:
             buffer.push(Math.round(RC_tuning.RC_RATE * 100));
@@ -1048,7 +1054,9 @@ MSP.crunch = function (code) {
             if (semver.gte(CONFIG.apiVersion, "1.10.0")) {
                 buffer.push(Math.round(RC_tuning.RC_YAW_EXPO * 100));
             }
-            buffer.push(Math.round(RC_tuning.AcroPlusFactor));
+            if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
+                buffer.push(Math.round(RC_tuning.AcroPlusFactor));
+            }
             break;
         // Disabled, cleanflight does not use MSP_SET_BOX.
         /*
@@ -1101,9 +1109,11 @@ MSP.crunch = function (code) {
             buffer.push(Math.round(MISC.vbatmincellvoltage * 10));
             buffer.push(Math.round(MISC.vbatmaxcellvoltage * 10));
             buffer.push(Math.round(MISC.vbatwarningcellvoltage * 10));
-            buffer.push(parseInt(MISC.rf_loop_ctrl));
-            buffer.push(lowByte(MISC.motor_pwm_rate));
-            buffer.push(highByte(MISC.motor_pwm_rate));
+            if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
+                buffer.push(parseInt(MISC.rf_loop_ctrl));
+                buffer.push(lowByte(MISC.motor_pwm_rate));
+                buffer.push(highByte(MISC.motor_pwm_rate));
+            }
             break;
         case MSP_codes.MSP_SET_CHANNEL_FORWARDING:
             for (var i = 0; i < SERVO_CONFIG.length; i++) {
