@@ -163,7 +163,7 @@ TABS.cli.read = function (readInfo) {
 
 									},  5000);
 
-								},1500);
+								},2500);
 							} else {
 								GUI.timeout_add('waiting_for_bootup', function waiting_for_bootup() {
 									MSP.send_message(MSP_codes.MSP_IDENT, false, false, function () {
