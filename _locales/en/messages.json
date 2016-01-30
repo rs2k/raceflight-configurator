@@ -240,29 +240,16 @@
         "message": "Thanks to the RaceFlight team!"
     },
     "defaultRFCreditsText": {
-        "message": "For the countless hours spent on coding and testing <strong>RaceFlight</strong>:<br />
-        blckmn,    braindrain, cmturn0, ehitaja, failsafe, ksal, MJ666, ntthhtl, phoboss, rs2k, stormin13, tommyleo."
+        "message": "For the countless hours spent on coding and testing <strong>RaceFlight</strong>:<br />blckmn,    braindrain, cmturn0, ehitaja, failsafe, ksal, MJ666, ntthhtl, phoboss, rs2k, stormin13, tommyleo."
     },
     "defaultCreditsHead": {
         "message": "Open Source Notice"
     },
     "defaultCreditsText": {
-        "message": "This utility is fully <strong>open source</strong> and is available free of charge to all <strong>RaceFlight</strong> users.<br /><br />    
-    <strong>RaceFlight</strong> is forked from <strong>Betaflight</strong>, so special thanks to all who have contributed to <strong>Betaflight</strong> and <strong>Cleanflight</strong>.<br />
-    "
+        "message": "This utility is fully <strong>open source</strong> and is available free of charge to all <strong>RaceFlight</strong> users.<br /><br /><strong>RaceFlight</strong> is forked from <strong>Betaflight</strong>, so special thanks to all who have contributed to <strong>Betaflight</strong> and <strong>Cleanflight</strong>.<br />"
     },
    "defaultMoreCreditsText": {
-        "message": "<h3>Also big thanks for following people:</h3>
-    <strong>Alexinparis</strong> (for MultiWii),<br />
-    <strong>David Ankers</strong> and <strong>OpenPilot team</strong> (for the Revo and Revo Nano),<br />
-    <strong>timecop</strong> (for Baseflight),<br />
-    <strong>Dominic Clifton</strong> (for Cleanflight),<br />
-    <strong>Boris</strong> (for Betaflight),<br />
-    <strong>James Peabody</strong> and <strong>Taulabs team</strong> (for Sparky2),<br />
-    <strong>Sambas</strong> (for the Cleanflight STM32F4 port)<br />
-<br />
-<strong>RaceFlight Configurator</strong> is forked from <strong>Cleanflight Configurator</strong>. Big thanks to <strong>Dominic Clifton</strong> and <strong>ctn</strong> for the original <strong>Baseflight Configurator</strong>.
-"
+        "message": "<h3>Also big thanks for following people:</h3><strong>Alexinparis</strong> (for MultiWii),<br /><strong>David Ankers</strong> and <strong>OpenPilot team</strong> (for the Revo and Revo Nano),<br /><strong>timecop</strong> (for Baseflight),<br /><strong>Dominic Clifton</strong> (for Cleanflight),<br /><strong>Boris</strong> (for Betaflight),<br /><strong>James Peabody</strong> and <strong>Taulabs team</strong> (for Sparky2),<br /><strong>Sambas</strong> (for the Cleanflight STM32F4 port)<br /><br /><strong>RaceFlight Configurator</strong> is forked from <strong>Cleanflight Configurator</strong>. Big thanks to <strong>Dominic Clifton</strong> and <strong>ctn</strong> for the original <strong>Baseflight Configurator</strong>."
     },
     "defaultSponsorsHead": {
         "message": "Sponsors"
@@ -469,8 +456,7 @@
         "message": "Motor PWM Rate (Hz)"
     },
     "configurationHelpRFLoopControl": {
-        "message": "<strong>RF_LOOP_CTRL</strong><br/>LOW / MEDIUM / HIGH gyro DLPF<br />
-        1/4/8KHz gyro/motor write speed"
+        "message": "<strong>RF_LOOP_CTRL</strong><br/>LOW / MEDIUM / HIGH gyro DLPF<br />1/4/8KHz gyro/motor write speed"
     },
     "configurationRFLoopCtrlNote": {
         "message": "<strong>Note:</strong> Additional rf_loop_ctrl values may be available after reboot!"
@@ -1217,7 +1203,7 @@
         "message": "Warning"
     },
     "firmwareFlasherWarningText": {
-        "message": "Please do <span style=\"color: red\">not</span> try to flash <strong>non-cleanflight</strong> hardware with this firmware flasher.<br />Do <span style=\"color: red\">not</span> <strong>disconnect</strong> the board or <strong>turn off</strong> your computer while flashing.<br /><br /><strong>Note: </strong>STM32 bootloader is stored in ROM, it cannot be bricked.<br /><strong>Note: </strong><span style=\"color: red\">Auto-Connect</span> is always disabled while you are inside firmware flasher.<br /><strong>Note: </strong>Make sure you have a backup; some upgrades/downgrades will wipe your configuration.<br /><strong>Note:</strong> If you have problems flashing try disconnecting all cables from your FC.<br /><br /><strong>Note: </strong>If you have lost comminication with your board then power off the board, jumper the bootloader pins, power on, enable 'No reboot sequence', enable 'Full chip erase', re-flash, then power off, remove bootloader jumper, power on and connect (For all firmware except OPBL firmware)."
+        "message": "Please do <span style=\"color: red\">not</span> try to flash <strong>non-raceflight</strong> hardware with this firmware flasher.<br />Do <span style=\"color: red\">not</span> <strong>disconnect</strong> the board or <strong>turn off</strong> your computer while flashing.<br /><br /><strong>Note: </strong>STM32 bootloader is stored in ROM, it cannot be bricked.<br /><strong>Note: </strong><span style=\"color: red\">Auto-Connect</span> is always disabled while you are inside firmware flasher.<br /><strong>Note: </strong>Make sure you have a backup; some upgrades/downgrades will wipe your configuration.<br /><strong>Note:</strong> If you have problems flashing try disconnecting all cables from your FC.<br /><br /><strong>Note: </strong>If you have lost comminication with your board then power off the board, jumper the bootloader pins, power on, enable 'No reboot sequence', enable 'Full chip erase', re-flash, then power off, remove bootloader jumper, power on and connect (For all firmware except OPBL firmware)."
     },
     "firmwareFlasherButtonLeave": {
         "message": "Leave Firmware Flasher"
