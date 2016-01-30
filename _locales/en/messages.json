@@ -212,15 +212,19 @@
     "dfu_erased_kilobytes": {
         "message": "Erased $1 kB of flash <span style=\"color: #57a929\">successfully</span>"
     },
+    "dfu_device_flash_info": {
+        "message": "Detected device with total flash size $1 kiB"
+    },
+    "dfu_error_image_size": {
+        "message": "<span style=\"color: red; font-weight: bold\">Error</span>: Supplied image is larger then flash available on the chip! Image: $1 kiB, limit = $2 kiB"
+    },
 
     "eeprom_saved_ok": {
         "message": "EEPROM <span style=\"color: #57a929\">saved</span>"
     },
-
     "defaultWelcomeIntro": {
         "message": "Welcome to <strong>RaceFlight - Configurator</strong>, a utility designed to simplify updating, configuring and tuning of your flight controller."
-    },
-    
+    },        
     "defaultWelcomeText": {
         "message": "The application supports all hardware that can run RaceFlight (Revolution, Revo Nano, Sparky 2.0, AlienFlightF4, VRCore, BlueJayF4, Blackbox etc)<br /><br />The firmware source code can be downloaded from <a href=\"https://github.com/rs2k/raceflight\" title=\"www.github.com\" target=\"_blank\">here</a><br />The newest binary firmware image and development builds are available <a href=\"http://www.rcgroups.com/forums/showthread.php?t=2533601\" title=\"www.rcgroups.com\" target=\"_blank\">here</a><br />"
     },
