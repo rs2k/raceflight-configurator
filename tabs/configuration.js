@@ -589,10 +589,10 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 for(var i = 0; i < inCompatibleLoopCtrlValues.length; i++) {
                     if(inCompatibleLoopCtrlValues[i] == $('select.rf_loop_ctrl').val()) {
                         $('select.rf_loop_ctrl').val(4);
-                        console.log("Incompatible loop_ctrl value, reverting to L1");
-                        GUI.log("Incompatible loop_ctrl value, reverting to L1");
+                        console.log("Incompatible rf_loop_ctrl value, reverting to L1");
+                        GUI.log("Incompatible rf_loop_ctrl value, reverting to L1");
                     } else {
-                        console.log("loop_ctrl is compatible with desired features!");
+                        console.log("rf_loop_ctrl is compatible with desired features!");
                     }
                 }
             }
