@@ -335,6 +335,10 @@ var MSP = {
                 }
                 if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
                     RC_tuning.AcroPlusFactor = data.getUint8(offset++);
+					RC_tuning.deadband = data.getUint8(offset++);
+					RC_tuning.yaw_deadband = data.getUint8(offset++);
+                    RC_tuning.gyro_lpf_hz = parseFloat((data.getUint8(offset++)));
+                    RC_tuning.dterm_lpf_hz = parseFloat((data.getUint8(offset++)));
                 }
                 break;
             case MSP_codes.MSP_PID:
@@ -366,11 +370,6 @@ var MSP = {
                             break;
                     }
                 }
-                if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
-                    var offset = 30;
-                    PIDs.gyro_lpf_hz = parseFloat((data.getUint8(offset++)));
-                    PIDs.dterm_lpf_hz = parseFloat((data.getUint8(offset++)));
-                }
                 break;
             // Disabled, RaceFlight does not use MSP_BOX.
             /*
@@ -394,7 +393,7 @@ var MSP = {
                     FC_CONFIG.loopTime = data.getInt16(0, 1);
                 }
                 break;
-            case MSP_codes.MSP_MISC: // 25 bytes
+            case MSP_codes.MSP_MISC: // 28 bytes
                 var offset = 0;
                 MISC.midrc = data.getInt16(offset, 1);
                 offset += 2;
@@ -419,9 +418,12 @@ var MSP = {
                 MISC.vbatmaxcellvoltage = data.getUint8(offset++, 1) / 10; // 10-50
                 MISC.vbatwarningcellvoltage = data.getUint8(offset++, 1) / 10; // 10-50
                 if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
-                    MISC.rf_loop_ctrl = parseFloat((data.getUint8(offset++)));
-                    MISC.motor_pwm_rate = parseFloat((data.getInt16(offset, 1)));
+                    MISC.rf_loop_ctrl = data.getUint8(offset++);
+                    MISC.motor_pwm_rate = data.getInt16(offset, 1);
                     offset += 2;
+                    MISC.acc_hardware = data.getUint8(offset++);
+                    MISC.baro_hardware = data.getUint8(offset++);
+                    MISC.mag_hardware = data.getUint8(offset++);
                 }
                 break;
             case MSP_codes.MSP_3D:
@@ -1029,10 +1031,6 @@ MSP.crunch = function (code) {
                         break;
                 }
             }
-            if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
-                buffer.push(parseInt(PIDs.gyro_lpf_hz));
-                buffer.push(parseInt(PIDs.dterm_lpf_hz));
-            }
             break;
         case MSP_codes.MSP_SET_RC_TUNING:
             buffer.push(Math.round(RC_tuning.RC_RATE * 100));
@@ -1055,7 +1053,11 @@ MSP.crunch = function (code) {
                 buffer.push(Math.round(RC_tuning.RC_YAW_EXPO * 100));
             }
             if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
-                buffer.push(Math.round(RC_tuning.AcroPlusFactor));
+                buffer.push(parseInt(RC_tuning.AcroPlusFactor));
+				buffer.push(parseInt(RC_tuning.deadband));
+				buffer.push(parseInt(RC_tuning.yaw_deadband));
+                buffer.push(parseInt(RC_tuning.gyro_lpf_hz));
+                buffer.push(parseInt(RC_tuning.dterm_lpf_hz));
             }
             break;
         // Disabled, RaceFlight does not use MSP_SET_BOX.
@@ -1113,6 +1115,9 @@ MSP.crunch = function (code) {
                 buffer.push(parseInt(MISC.rf_loop_ctrl));
                 buffer.push(lowByte(MISC.motor_pwm_rate));
                 buffer.push(highByte(MISC.motor_pwm_rate));
+                buffer.push(parseInt(MISC.acc_hardware));
+                buffer.push(parseInt(MISC.baro_hardware));
+                buffer.push(parseInt(MISC.mag_hardware));
             }
             break;
         case MSP_codes.MSP_SET_CHANNEL_FORWARDING:

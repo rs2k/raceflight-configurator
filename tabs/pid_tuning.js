@@ -184,8 +184,8 @@ TABS.pid_tuning.initialize = function (callback) {
             $('.rate-tpa input[name="acroplus"]').val(RC_tuning.AcroPlusFactor);
             
             // Fill in data from PIDs object
-            $('.rate-tpa input[name="gyro_lpf_hz"]').val(PIDs.gyro_lpf_hz);
-            $('.rate-tpa input[name="dterm_lpf_hz"]').val(PIDs.dterm_lpf_hz);
+            $('.rate-tpa input[name="gyro_lpf_hz"]').val(RC_tuning.gyro_lpf_hz);
+            $('.rate-tpa input[name="dterm_lpf_hz"]').val(RC_tuning.dterm_lpf_hz);
             
             $('div.rfWrongFirmwareNote').hide();
         } else {
@@ -256,8 +256,8 @@ TABS.pid_tuning.initialize = function (callback) {
         RC_tuning.dynamic_THR_PID = parseFloat($('.rate-tpa input[name="tpa"]').val());
         RC_tuning.dynamic_THR_breakpoint = parseInt($('.rate-tpa input[name="tpa-breakpoint"]').val());
         RC_tuning.AcroPlusFactor = parseInt($('.rate-tpa input[name="acroplus"]').val());
-        PIDs.gyro_lpf_hz = parseInt($('.rate-tpa input[name="gyro_lpf_hz"]').val());
-        PIDs.dterm_lpf_hz = parseInt($('.rate-tpa input[name="dterm_lpf_hz"]').val());
+        RC_tuning.gyro_lpf_hz = parseInt($('.rate-tpa input[name="gyro_lpf_hz"]').val());
+        RC_tuning.dterm_lpf_hz = parseInt($('.rate-tpa input[name="dterm_lpf_hz"]').val());
     }
     function hideUnusedPids(sensors_detected) {
       $('.tab-pid_tuning table.pid_tuning').hide();
@@ -400,10 +400,11 @@ TABS.pid_tuning.initialize = function (callback) {
 
             function send_pids() {
                 if (!TABS.pid_tuning.controllerChanged) {
+                    console.log(PIDs);
                     MSP.send_message(MSP_codes.MSP_SET_PID, MSP.crunch(MSP_codes.MSP_SET_PID), false, send_rc_tuning_changes);
                 }
             }
-
+            console.log(RC_tuning);
             function send_rc_tuning_changes() {
                 MSP.send_message(MSP_codes.MSP_SET_RC_TUNING, MSP.crunch(MSP_codes.MSP_SET_RC_TUNING), false, save_to_eeprom);
             }
