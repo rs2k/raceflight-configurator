@@ -335,6 +335,8 @@ var MSP = {
                 }
                 if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
                     RC_tuning.AcroPlusFactor = data.getUint8(offset++);
+					RC_tuning.deadband = data.getUint8(offset++);
+					RC_tuning.yaw_deadband = data.getUint8(offset++);
                 }
                 break;
             case MSP_codes.MSP_PID:
@@ -1056,7 +1058,9 @@ MSP.crunch = function (code) {
                 buffer.push(Math.round(RC_tuning.RC_YAW_EXPO * 100));
             }
             if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
-                buffer.push(Math.round(RC_tuning.AcroPlusFactor));
+                buffer.push(parseInt(RC_tuning.AcroPlusFactor));
+				buffer.push(parseInt(RC_tuning.deadband));
+				buffer.push(parseInt(RC_tuning.yaw_deadband));
             }
             break;
         // Disabled, RaceFlight does not use MSP_SET_BOX.
