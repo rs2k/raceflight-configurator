@@ -588,7 +588,7 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             if(bit_check(BF_CONFIG.features, 18) && !bit_check(BF_CONFIG.features, 22) ) {
                 for(var i = 0; i < inCompatibleLoopCtrlValues.length; i++) {
                     if(inCompatibleLoopCtrlValues[i] == $('select.rf_loop_ctrl').val()) {
-                        $('select.rf_loop_ctrl').val(1);
+                        $('select.rf_loop_ctrl').val(4);
                         console.log("Incompatible loop_ctrl value, reverting to L1");
                         GUI.log("Incompatible loop_ctrl value, reverting to L1");
                     } else {
