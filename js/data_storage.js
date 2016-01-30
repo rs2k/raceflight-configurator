@@ -76,7 +76,12 @@ var RC_tuning = {
     throttle_MID:    0,
     throttle_EXPO:   0,
     dynamic_THR_breakpoint: 0,
-	RC_YAW_EXPO:         0
+    RC_YAW_EXPO:     0,
+	AcroPlusFactor:  0,
+    deadband:        0,
+    yaw_deadband:    0,
+    dterm_lpf_hz:    0,
+    gyro_lpf_hz:     0
 };
 
 var AUX_CONFIG = [];
@@ -162,7 +167,12 @@ var MISC = {
     vbatscale:              0,
     vbatmincellvoltage:     0,
     vbatmaxcellvoltage:     0,
-    vbatwarningcellvoltage: 0
+    vbatwarningcellvoltage: 0,
+    rf_loop_ctrl:           0,
+    motor_pwm_rate:         0,
+    acc_hardware:           0,
+    baro_hardware:          0,
+    mag_hardware:           0
 };
 
 var _3D = {
