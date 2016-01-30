@@ -748,6 +748,12 @@
     "receiverRcYawExpo": {
         "message": "RC Yaw Expo"
     },
+    "receiverDeadband": {
+        "message": "RC Deadband"
+    },
+    "receiverYawDeadband": {
+        "message": "RC Yaw Deadband"
+    },
     "receiverChannelMap": {
         "message": "Channel Map"
     },
