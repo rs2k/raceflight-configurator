@@ -276,7 +276,7 @@ GUI_control.prototype.content_ready = function (callback) {
     // Build link to in-use CF version documentation
     var documentationButton = $('div#content #button-documentation');
     documentationButton.html("Documentation for "+CONFIG.flightControllerVersion);
-    documentationButton.attr("href","https://github.com/cleanflight/cleanflight/tree/v{0}/docs".format(CONFIG.flightControllerVersion));
+    documentationButton.attr("href","https://github.com/rs2k/raceflight/tree/v{0}/docs".format(CONFIG.flightControllerVersion));
 
     // loading tooltip
     jQuery(document).ready(function($) {
