@@ -289,6 +289,18 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             '32000'
         ];
 
+        // generate ACC_HARDWARE
+        var rfAccHardware = [
+            'Auto-detect',
+            'Gyro-only',
+            'ADXL345',
+            'MPU6050 integrated',
+            'MMA8452',
+            'BMA280',
+            'LSM303DLHC',
+            'MPU6000',
+            'MPU6500'
+        ];
         // generate GPS
         var gpsProtocols = [
             'NMEA',
@@ -311,6 +323,13 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             'Japanese MSAS',
             'Indian GAGAN'
         ];
+
+        // Generate ACC_HARDWARE dropdown menu
+        var acc_hardware_e = $('select.acc_hardware');
+        for (var i = 0; i < rfAccHardware.length; i++) {
+            acc_hardware_e.append('<option value="' + i + '">' + i + " - " + rfAccHardware[i] + '</option>');
+        }
+      acc_hardware_e.val(MISC.acc_hardware);
         var motor_pwm_rate_e = $('select.motor_pwm_rate');
         for (var i = 0; i < rfMotorPWMRate.length; i++) {
             motor_pwm_rate_e.append('<option value="' + rfMotorPWMRate[i] + '">' + rfMotorPWMRate[i] + '</option>');
@@ -324,7 +343,8 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             MISC.gps_type = parseInt($(this).val());
         });
 
-        gps_protocol_e.val(MISC.gps_type);       
+        gps_protocol_e.val(MISC.gps_type);
+        
         
         var gps_baudrate_e = $('select.gps_baudrate');
         for (var i = 0; i < gpsBaudRates.length; i++) {
@@ -446,6 +466,9 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
 
             //fill rf_loop_ctrl        
             $('select.rf_loop_ctrl').val(MISC.rf_loop_ctrl);
+
+            //fill acc_hardware
+            $('select.acc_hardware').val(MISC.acc_hardware);
         } else {
             $('div.motor_pwm_rate').show();
             $('select.motor_pwm_rate').prop('disabled', 'disabled');
@@ -576,6 +599,7 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                
             MISC.motor_pwm_rate = parseInt($('select.motor_pwm_rate').val());
             MISC.rf_loop_ctrl = parseInt($('select.rf_loop_ctrl').val());
+            MISC.acc_hardware = parseInt($('select.acc_hardware').val());
             _3D.deadband3d_low = parseInt($('input[name="3ddeadbandlow"]').val());
             _3D.deadband3d_high = parseInt($('input[name="3ddeadbandhigh"]').val());
             _3D.neutral3d = parseInt($('input[name="3dneutral"]').val());
