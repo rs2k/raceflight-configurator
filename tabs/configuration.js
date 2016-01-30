@@ -589,12 +589,12 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 for(var i = 0; i < inCompatibleLoopCtrlValues.length; i++) {
                     if(inCompatibleLoopCtrlValues[i] == $('select.rf_loop_ctrl').val()) {
                         $('select.rf_loop_ctrl').val(1);
-                        console.log("Incompatible loop_ctrl value, reverting to L1")
+                        console.log("Incompatible loop_ctrl value, reverting to L1");
                         GUI.log("Incompatible loop_ctrl value, reverting to L1");
-               }
-               else {
-                  console.log("loop_ctrl is compatible with desired features!");
-               }
+                    } else {
+                        console.log("loop_ctrl is compatible with desired features!");
+                    }
+                }
             }
                
             MISC.motor_pwm_rate = parseInt($('select.motor_pwm_rate').val());
