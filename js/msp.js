@@ -419,9 +419,10 @@ var MSP = {
                 MISC.vbatmaxcellvoltage = data.getUint8(offset++, 1) / 10; // 10-50
                 MISC.vbatwarningcellvoltage = data.getUint8(offset++, 1) / 10; // 10-50
                 if (semver.gte(CONFIG.apiVersion, "1.14.0")) {
-                    MISC.rf_loop_ctrl = parseFloat((data.getUint8(offset++)));
-                    MISC.motor_pwm_rate = parseFloat((data.getInt16(offset, 1)));
+                    MISC.rf_loop_ctrl = data.getUint8(offset++);
+                    MISC.motor_pwm_rate = data.getInt16(offset, 1);
                     offset += 2;
+                    MISC.acc_hardware = parseFloat((data.getUint8(offset++)));
                 }
                 break;
             case MSP_codes.MSP_3D:
@@ -1113,6 +1114,7 @@ MSP.crunch = function (code) {
                 buffer.push(parseInt(MISC.rf_loop_ctrl));
                 buffer.push(lowByte(MISC.motor_pwm_rate));
                 buffer.push(highByte(MISC.motor_pwm_rate));
+                buffer.push(parseInt(MISC.acc_hardware));
             }
             break;
         case MSP_codes.MSP_SET_CHANNEL_FORWARDING:
