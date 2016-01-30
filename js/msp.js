@@ -424,7 +424,9 @@ var MSP = {
                     MISC.rf_loop_ctrl = data.getUint8(offset++);
                     MISC.motor_pwm_rate = data.getInt16(offset, 1);
                     offset += 2;
-                    MISC.acc_hardware = parseFloat((data.getUint8(offset++)));
+                    MISC.acc_hardware = data.getUint8(offset++);
+                    MISC.baro_hardware = data.getUint8(offset++);
+                    MISC.mag_hardware = data.getUint8(offset++);
                 }
                 break;
             case MSP_codes.MSP_3D:
@@ -1119,6 +1121,8 @@ MSP.crunch = function (code) {
                 buffer.push(lowByte(MISC.motor_pwm_rate));
                 buffer.push(highByte(MISC.motor_pwm_rate));
                 buffer.push(parseInt(MISC.acc_hardware));
+                buffer.push(parseInt(MISC.baro_hardware));
+                buffer.push(parseInt(MISC.mag_hardware));
             }
             break;
         case MSP_codes.MSP_SET_CHANNEL_FORWARDING:
