@@ -258,7 +258,7 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         if(bit_check(BF_CONFIG.features, 18) && !bit_check(BF_CONFIG.features, 22) ) {
             for(var i = 0; i < inCompatibleLoopCtrlValues.length; i++) {
                 var index = RFLoopCtrlList.indexOf(inCompatibleLoopCtrlValues[i]);
-                if(index) {
+                if(index >= 0) {
                     RFLoopCtrlList.splice(index,1);
                 }
             }
