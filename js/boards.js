@@ -76,6 +76,10 @@ var BOARD_DEFINITIONS = [
         name: "MotoLab",
         identifier: "MOTO",
         vcp: true
+    }, {
+        name: "Lumenier Lux",
+        identifier: "LUX\0",
+        vcp: true
     }
 ];
 
