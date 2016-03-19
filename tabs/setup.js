@@ -61,7 +61,7 @@ TABS.setup.initialize = function (callback) {
 		var board_image;
 		var board_image_detail;
         var board_path = 'images/boards/'
-        var board_images = ['REVN','REVO','BJF4']
+        var board_images = ['REVN','REVO','BJF4','SPK2']
         
 		// update board name
 		console.log('Using board definition', board_name);
