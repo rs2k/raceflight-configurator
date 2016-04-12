@@ -247,7 +247,7 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 RFLoopCtrlList = [0,1,2,3,4,5,6,7,8]
                 break;
             case "F3":
-                RFLoopCtrlList = [1,4,6]
+                RFLoopCtrlList = [0,1,2,3,4,5,6,7,8]
                 break;
             default: // F1 Targets
                 RFLoopCtrlList = [4,6]
@@ -283,10 +283,14 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             '500',
             '1000',
             '2000',
+            '2666',
             '4000',
             '8000',
             '16000',
-            '32000'
+            '16666',
+            '24000',
+            '32000',
+            '64000'
         ];
 
         // generate ACC_HARDWARE
