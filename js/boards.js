@@ -80,7 +80,12 @@ var BOARD_DEFINITIONS = [
         name: "Lumenier Lux",
         identifier: "LUX\0",
         vcp: true
+    }, {
+        name: "Rcnet YOUPIF4",
+        identifier: "YPF4",
+        vcp: true
     }
+
 ];
 
 var DEFAULT_BOARD_DEFINITION = {

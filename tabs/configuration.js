@@ -17,7 +17,8 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         "REVO",
         "SPK2",
         "AFF4",
-        "VRCO"
+        "VRCO",
+	"YPF4"
     ]
     var F3Targets = [
         "CHF3",
